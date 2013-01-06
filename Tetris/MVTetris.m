@@ -8,16 +8,18 @@
 
 #import "MVTetris.h"
 
+// размеры игрового поля
+const int gameFieldWidth  = 16;
+const int gameFieldHeight = 28;
+
 @implementation MVTetris {
-    NSColor * gameField [ gameFieldWidth ] [ gameFieldHeight ]; // цвета на поле
+    NSColor * gameField [ gameFieldWidth ] [ gameFieldHeight ];     // цвета на поле
     Boolean gameFieldData [ gameFieldWidth ][ gameFieldHeight ];    // занятость клеток
-    NSPoint currentPos;                                         // координаты текущей фигуры
-    MVTetrisFigure * currentFigure;                             // текущая фигура
-    MVTetrisFigure * nextFigure;                                // следующая фигура
-    BOOL inGame;                                                // признак активности игры
-    NSTimer * timerRedraw;                                      // таймер перерисовки
-    NSTimer * timerGame;                                        // таймер игры
-    int score;                                                  // текущее количество очков
+    NSPoint currentPos;                                             // координаты текущей фигуры
+    MVTetrisFigure * currentFigure;                                 // текущая фигура
+    MVTetrisFigure * nextFigure;                                    // следующая фигура
+    NSTimer * timerRedraw;                                          // таймер перерисовки
+    NSTimer * timerGame;                                            // таймер игры
 }
 
 // инициализация
@@ -25,7 +27,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self clearGame];
-        inGame = false;
+        self.inGame = [NSNumber numberWithBool: false];
+        self.score = [NSNumber numberWithInt: 0];
+        
         // инициализируем таймеры
         timerRedraw = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(tickRedraw:) userInfo:nil repeats:YES];
         timerGame = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(tickGame:) userInfo:nil repeats:YES];
@@ -40,13 +44,6 @@
         figureColors[fkUnknown] = [NSColor whiteColor]; 
     }
     return self;
-}
-
-// обновление очков в текстовом поле
-- (void) updateScore {
-    if (inGame) {
-        [labelScore setStringValue:[NSString stringWithFormat:@"Score: %d", score]];
-    }
 }
 
 // очистка поля
@@ -72,7 +69,7 @@
     float cellHeight = [self bounds].size.height / gameFieldHeight;
     for (int y = 0; y < 4; y++) {
         for (int x = 0; x < 4; x++) {
-            p = [NSBezierPath bezierPathWithRect:NSMakeRect( (ax + x ) * cellWidth , (gameFieldHeight - y - 1 - ay) * cellHeight, cellWidth - 2, cellHeight - 2)];
+            p = [NSBezierPath bezierPathWithRect: NSMakeRect( (ax + x ) * cellWidth , (gameFieldHeight - y - 1 - ay) * cellHeight, cellWidth - 2, cellHeight - 2)];
             
             if ([figure shape].figure[x][y]) {
     
@@ -130,7 +127,7 @@
          doDrawEmpty:true];
     
     // если в игре, рисуем текущую фигуру
-    if (inGame) {
+    if ([_inGame boolValue]) {
         [self drawFigure: currentFigure
                      atX: currentPos.x
                     andY: currentPos.y];
@@ -259,8 +256,7 @@
         
         // нашли полностью заполненную линию
         if (lineIsFull) {
-            score += 5;
-            [self updateScore];
+            self.score = [NSNumber numberWithInt: _score.integerValue + 5];
             
             // сжатие (стакан не сжимаем)
             for (cy = vy - 1; cy >= 0; cy--) {
@@ -287,9 +283,9 @@
     currentPos = NSMakePoint((gameFieldWidth - 4) / 2, 0);
 }
 
-// сщбытие: таймер игры
+// событие: таймер игры
 - (void) tickGame:(id)sender; {
-    if (inGame) {
+    if ([_inGame boolValue]) {
         
         // если фигура, переместясь вниз на клетку будет пересекаться с занятыми ячейками на поле, 
         // то нужно ее зафиксировать, сделать текущей фигуру на базе следующей, сгенерировать следующую фигуру
@@ -299,11 +295,10 @@
             
             // проверка конца игры: новая фигура на начальном месте пересекается с имеющемися ячейками
             if ([self checkIntersectFigure:currentFigure atX:currentPos.x andY:currentPos.y]) {
-                [self stopGame];
+                [self stopGame:nil];
             } else {
                 // все ок, прибавляем очки и обновляем их в окне
-                score ++;
-                [self updateScore];
+                self.score = [NSNumber numberWithInt: _score.integerValue + 1];
             }
         } else 
             // просто перемещаем вниз
@@ -316,31 +311,21 @@
     [self clearGameField];
     nextFigure = [[MVTetrisFigure alloc] init];
     [nextFigure randomKind];
-    score = 0;
-    [self updateScore];
+    self.score = [NSNumber numberWithInt: 0];
 }
 
 // остановка игры
-- (void) stopGame {
-    inGame = false;
-    [labelScore setStringValue:[NSString stringWithFormat:@"Game over, final score: %d", score]];
-    [newGameButton setLabel:@"New game!"];
-    [newGameButton setImage:[NSImage imageNamed:@"NSGoRightTemplate"]];
+- (IBAction) stopGame:(id)sender {
+    self.inGame = [NSNumber numberWithBool: false];
+    [labelTitleScore setStringValue: @"Final score:"];
 }
 
 // начало новой игры
 - (IBAction) newGame:(id)sender {
-    if (inGame) {
-        [self stopGame];
-    } else {
-        [self clearGame];
-        [self newFigure];
-        inGame = true;
-        [newGameButton setLabel:@"Stop game"];
-//        NSLog([NSString stringWithFormat:@"%@", [NSImage imageNamed:@"NSStopProgressTemplate"]]);
-        [newGameButton setImage:[NSImage imageNamed:@"NSStopProgressTemplate"]];
-//        [newGameButton validateToolbarItem:newGameButton];
-    }
+    [self clearGame];
+    [self newFigure];
+    [labelTitleScore setStringValue: @"Score:"];
+    self.inGame = [NSNumber numberWithBool: true];
 }
 
 @end

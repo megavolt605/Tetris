@@ -10,35 +10,16 @@
 
 // координаты с занятыми ячейками для всех типов фигур
 const coord figureShapes[7][4] = { 
-    // fkUnknown
-    {}, 
-    
-    // fkSquare
-    { {1,1}, {1,2}, {2,1}, {2,2} }, 
-    
-    // fkLine
-    { {1,0}, {1,1}, {1,2}, {1,3} }, 
-    
-    // fkL
-    { {1,0}, {1,1}, {1,2}, {2,2} }, 
-    
-    // fkJ
-    { {2,0}, {2,1}, {2,2}, {1,2} }, 
-    
-    // fkS
-    { {1,1}, {2,1}, {0,2}, {1,2} }, 
-    
-    // fkZ
-    { {0,1}, {1,1}, {1,2}, {2,2} } 
+    /* fkUnknown */ {},
+    /* fkSquare  */ { {1,1}, {1,2}, {2,1}, {2,2} },
+    /* fkLine    */ { {1,0}, {1,1}, {1,2}, {1,3} },
+    /* fkL       */ { {1,0}, {1,1}, {1,2}, {2,2} },
+    /* fkJ       */ { {2,0}, {2,1}, {2,2}, {1,2} },
+    /* fkS       */ { {1,1}, {2,1}, {0,2}, {1,2} },
+    /* fkZ       */ { {0,1}, {1,1}, {1,2}, {2,2} }
 };
 
 @implementation MVTetrisFigure
-{
-    
-}
-// объявление свойств
-@synthesize shape;
-@synthesize color;
 
 // инициализация
 - (id) init {
@@ -49,20 +30,14 @@ const coord figureShapes[7][4] = {
     return self;
 }
 
-
-// чтение типа фигуры
-- (figureKind) kind {
-    return _kind;
-}
-
 // установка типа фигуры
-- (void) setKind:(figureKind)newKind {
+- (void) setKind:(figureKind) newKind {
     int x, y, i;
     
     // очистка изображения
     for (x = 0; x < 4; x++) {
         for (y = 0; y < 4; y++) {
-            shape.figure[x][y] = 0;
+            _shape.figure[x][y] = 0;
         }
     }
     
@@ -72,11 +47,15 @@ const coord figureShapes[7][4] = {
     self.color = figureColors[_kind];
 
     // прорисовка нового изображения
-    if (_kind != fkUnknown) { 
+    if (_kind != fkUnknown) {
         for (i = 0; i < 4; i++) {
-            shape.figure[ figureShapes[_kind][i].x ] [figureShapes[_kind][i].y] = 1;
+            _shape.figure[ figureShapes[_kind][i].x ] [figureShapes[_kind][i].y] = 1;
         }
     }
+}
+
+- (figureKind) getKind {
+    return _kind;
 }
 
 // поворот изображения фигуры против часовой стрелки
@@ -91,12 +70,12 @@ const coord figureShapes[7][4] = {
     int buf [4][4];
     for (x = 0; x < 4; x++) {
         for (y = 0; y < 4; y++) {
-            buf[x][y] = shape.figure[x][y];
+            buf[x][y] = _shape.figure[x][y];
         }
     }
     for (x = 0; x < 4; x++) {
         for (y = 0; y < 4; y++) {
-            shape.figure[x][y] = buf[3-y][x];
+            _shape.figure[x][y] = buf[3-y][x];
         }
     }
 }

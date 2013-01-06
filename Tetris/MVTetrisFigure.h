@@ -12,8 +12,8 @@
 typedef enum figureKind {
     fkFirst,
     fkUnknown = fkFirst, 
-    fkSquare, 
-    fkLine, 
+    fkSquare,
+    fkLine,
     fkL, 
     fkJ, 
     fkS, 
@@ -23,36 +23,32 @@ typedef enum figureKind {
 } figureKind;
 
 // изображение фигуры
-typedef struct {int figure [4][4]; } figureShape;
+typedef struct {
+    int figure [4][4];
+} figureShape;
 
 // координаты
-typedef struct {int x, y; } coord;
+typedef struct {
+    int x, y;
+} coord;
 
 // цвета фигур
 NSColor * figureColors [fkCount];
 
-@interface MVTetrisFigure : NSObject {
-    figureKind _kind;   // тип фигуры
-    figureShape shape;  // изображение фигуры
-    NSColor * color;    // цвет фигуры
-}
+@interface MVTetrisFigure : NSObject
 
-// чтение/установка типа фигуры
-- (void) setKind:(figureKind)newKind;
-- (figureKind) kind;
+    // поворот фигуры
+    - (void) rotate;
 
-// поворот фигуры
-- (void) rotate;
+    // выбор случайного типа фигуры
+    - (void) randomKind;
 
-// выбор случайного типа фигуры
-- (void) randomKind;
+    // клонирование текущей фигуры
+    - (MVTetrisFigure *) clone;
 
-// клонирование текущей фигуры
-- (MVTetrisFigure *) clone;
-
-// объявление свойств
-@property (readwrite) figureKind kind;
-@property (readonly) figureShape shape;
-@property (readwrite) NSColor * color;
+    // объявление свойств
+    @property (nonatomic, readwrite) figureKind kind;  // тип фигуры
+    @property (readonly) figureShape shape; // изображение фигуры
+    @property (readwrite) NSColor * color; // цвет фигуры
 
 @end

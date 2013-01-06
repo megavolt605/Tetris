@@ -12,6 +12,6 @@ int main(int argc, char *argv[])
 {
     time_t t;
     time(&t);
-    srand(t);
+    srand((int)t);
     return NSApplicationMain(argc, (const char **)argv);
 }

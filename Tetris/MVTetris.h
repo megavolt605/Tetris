@@ -10,18 +10,29 @@
 #import "MVTetrisFigure.h"
 
 // размеры игрового поля
-const int gameFieldWidth  = 16;
-const int gameFieldHeight = 30;
+extern const int gameFieldWidth;
+extern const int gameFieldHeight;
 
 @interface MVTetris : NSView {
-    // связка с текстовым полем для вывода количество очков
+    // связка с полем с заголовком игровых очков
+    IBOutlet NSTextField * labelTitleScore;
+    
+    // связка с текстовым полем для вывода количества очков
     IBOutlet NSTextField * labelScore;
     
-    // связка с кнопкой начала/остановки игры
-    IBOutlet NSToolbarItem * newGameButton;
+    // связка с кнопкой начала игры
+    IBOutlet NSButton * newGameButton;
+
+    // связка с кнопкой остановки игры
+    IBOutlet NSButton * stopGameButton;
 }
 
 // связка с событием нажатия кнопки
 - (IBAction) newGame:(id)sender;
+- (IBAction) stopGame:(id)sender;
+
+@property NSNumber *inGame;
+@property NSNumber *score;   // текущее количество очков
+
 
 @end

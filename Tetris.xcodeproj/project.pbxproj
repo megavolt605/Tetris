@@ -120,11 +120,11 @@
 		B386E1D61592215A0054C40C /* Tetris */ = {
 			isa = PBXGroup;
 			children = (
-				B386E1E51592215A0054C40C /* MainMenu.xib */,
 				B30844F51594C51A00C71533 /* MVTetrisFigure.h */,
 				B30844F61594C51A00C71533 /* MVTetrisFigure.m */,
 				B386E2041592218E0054C40C /* MVTetris.h */,
 				B386E2051592218E0054C40C /* MVTetris.m */,
+				B39B1FA11699DE7500C11199 /* Visual */,
 				B386E1D71592215A0054C40C /* Supporting Files */,
 			);
 			path = Tetris;
@@ -161,6 +161,14 @@
 				B386E1F61592215B0054C40C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B39B1FA11699DE7500C11199 /* Visual */ = {
+			isa = PBXGroup;
+			children = (
+				B386E1E51592215A0054C40C /* MainMenu.xib */,
+			);
+			name = Visual;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +217,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MV;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "megavolt605@gmail.com";
 			};
 			buildConfigurationList = B386E1C61592215A0054C40C /* Build configuration list for PBXProject "Tetris" */;
@@ -383,6 +391,7 @@
 		B386E1FF1592215B0054C40C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tetris/Tetris-Prefix.pch";
 				INFOPLIST_FILE = "Tetris/Tetris-Info.plist";
@@ -394,6 +403,7 @@
 		B386E2001592215B0054C40C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tetris/Tetris-Prefix.pch";
 				INFOPLIST_FILE = "Tetris/Tetris-Info.plist";
@@ -406,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tetris.app/Contents/MacOS/Tetris";
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tetris/Tetris-Prefix.pch";
@@ -420,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tetris.app/Contents/MacOS/Tetris";
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tetris/Tetris-Prefix.pch";
