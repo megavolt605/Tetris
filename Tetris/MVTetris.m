@@ -13,105 +13,80 @@ const int gameFieldWidth  = 16;
 const int gameFieldHeight = 28;
 
 @implementation MVTetris {
-    NSColor * gameField [ gameFieldWidth ] [ gameFieldHeight ];     // цвета на поле
-    Boolean gameFieldData [ gameFieldWidth ][ gameFieldHeight ];    // занятость клеток
-    NSPoint currentPos;                                             // координаты текущей фигуры
-    MVTetrisFigure * currentFigure;                                 // текущая фигура
-    MVTetrisFigure * nextFigure;                                    // следующая фигура
-    NSTimer * timerRedraw;                                          // таймер перерисовки
-    NSTimer * timerGame;                                            // таймер игры
+    NSImage * gameField [gameFieldWidth] [gameFieldHeight];     // цвета на поле
+    Boolean gameFieldData [gameFieldWidth] [gameFieldHeight];   // занятость клеток
+    NSPoint currentPos;                                         // координаты текущей фигуры
+    MVTetrisFigure * currentFigure;                             // текущая фигура
+    MVTetrisFigure * nextFigure;                                // следующая фигура
+    NSTimer * timerRedraw;                                      // таймер перерисовки
+    NSTimer * timerGame;                                        // таймер игры
 }
 
 // инициализация
 - (id) initWithFrame: (NSRect) frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self clearGame];
         self.inGame = [NSNumber numberWithBool: false];
-        self.score = [NSNumber numberWithInt: 0];
+        
+        // создаем картинки
+        figureImages[fkJ] = [NSImage imageNamed: @"Tetris_01.png"];
+        figureImages[fkL] = [NSImage imageNamed: @"Tetris_02.png"];
+        figureImages[fkLine] = [NSImage imageNamed: @"Tetris_03.png"];
+        figureImages[fkS] = [NSImage imageNamed: @"Tetris_04.png"];
+        figureImages[fkSquare] = [NSImage imageNamed: @"Tetris_05.png"];
+        figureImages[fkZ] = [NSImage imageNamed: @"Tetris_06.png"];
+        
+        _wallImage = [NSImage imageNamed: @"Tetris_07.png"];
+        _fieldImage = [NSImage imageNamed: @"Tetris_08.png"];
         
         // инициализируем таймеры
-        timerRedraw = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(tickRedraw:) userInfo:nil repeats:YES];
-        timerGame = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(tickGame:) userInfo:nil repeats:YES];
+        timerRedraw = [NSTimer scheduledTimerWithTimeInterval: 0.1f target: self selector: @selector(tickRedraw:) userInfo: nil repeats: true];
+        timerGame = [NSTimer scheduledTimerWithTimeInterval: 0.2f target: self selector: @selector(tickGame:) userInfo: nil repeats: true];
         
-        // создаем цвета фигур
-        figureColors[fkJ] = [NSColor redColor]; 
-        figureColors[fkL] = [NSColor greenColor]; 
-        figureColors[fkLine] = [NSColor blueColor]; 
-        figureColors[fkS] = [NSColor purpleColor]; 
-        figureColors[fkSquare] = [NSColor yellowColor]; 
-        figureColors[fkZ] = [NSColor cyanColor]; 
-        figureColors[fkUnknown] = [NSColor whiteColor]; 
+        [self clearGame];
     }
     return self;
 }
 
 // очистка поля
 - (void) clearGameField {
-    for (int x = 0; x < gameFieldWidth; x++ ) {
+    // поле
+    memset(gameFieldData, 0, sizeof(gameFieldData));
+
+    for (int x = 1; x < gameFieldWidth - 1; x++ ) {
         for (int y = 0; y < gameFieldHeight; y++ ) {
-            gameField[x][y] = ((gameFieldData[x][y] = (x == 0) | (y == (gameFieldHeight - 1)) | (x == (gameFieldWidth - 1))) ? [NSColor blueColor] : [NSColor blackColor]);
-            // конструкция строкой выше прикольная, но мне уж очень не нравится из-за плохой читаемости 
-            // я бы написал так:
-            // Boolean border = (x == 0) | (y == (gameFieldHeight - 1)) | (x == (gameFieldWidth - 1));
-            // gameFieldData[x][y] = border;
-            // gameField[x][y] = (border ? [NSColor blueColor] : [NSColor blackColor]);
-            //
-            // пытаюсь быть истинным СИшником :)
+            gameField[x][y] = self.fieldImage;
         }
     }
-}
-
-// прорисовка фигуры по координатам (координаты по вертикали переворачиваются)
-- (void) drawFigure: (MVTetrisFigure *) figure atX: (int) ax andY: (int) ay doDrawEmpty: (Boolean) drawEmpty {
-    NSBezierPath * p;
-    float cellWidth = [self bounds].size.width / (gameFieldWidth + 5);
-    float cellHeight = [self bounds].size.height / gameFieldHeight;
-    for (int y = 0; y < 4; y++) {
-        for (int x = 0; x < 4; x++) {
-            p = [NSBezierPath bezierPathWithRect: NSMakeRect( (ax + x ) * cellWidth , (gameFieldHeight - y - 1 - ay) * cellHeight, cellWidth - 2, cellHeight - 2)];
-            
-            if ([figure shape].figure[x][y]) {
     
-                // ячейка занята
-                [[figure color] set];
-                [p fill];
-                [p stroke];
+    // стенки стакана (вертикальные)
+    for (int y = 0; y < gameFieldHeight; y++ ) {
+        gameField[0][y] = gameField[gameFieldWidth - 1][y] = self.wallImage;
+        gameFieldData[0][y] = true;
 
-            } else {
-                // или свободна
-                
-                // когда фигура рисуется на поле, пустые ячейки не нужно рисовать (затираются ячейки поля)
-                if (drawEmpty) {
-                    [[NSColor blackColor] set];
-                    [p fill];
-                    [p stroke];
-                }
-            }
-        }
+        gameField[gameFieldWidth - 1][y] = gameField[gameFieldWidth - 1][y] = self.wallImage;
+        gameFieldData[gameFieldWidth - 1][y] = true;
     }
-}
-
-- (void) drawFigure: (MVTetrisFigure *) figure atX: (int) ax andY: (int) ay {
-    [self drawFigure: figure 
-                 atX: ax 
-                andY: ay
-         doDrawEmpty: false];
+    
+    // дно стакана
+    for (int x = 1; x < gameFieldWidth - 1; x++ ) {
+        gameField[x][gameFieldHeight - 1] = self.wallImage;
+        gameFieldData[x][gameFieldHeight - 1] = true;
+    }
 }
 
 // отрисовка игрового поля
 - (void) drawGameField {
-    NSBezierPath * p;
     float cellWidth = [self bounds].size.width / (gameFieldWidth + 5);
     float cellHeight = [self bounds].size.height / gameFieldHeight;
     int x, y;
     
     for (y = 0; y < gameFieldHeight; y++) {
         for (x  = 0; x < gameFieldWidth; x++) {
-            [gameField[x][y] set];
-            p = [NSBezierPath bezierPathWithRect:NSMakeRect(x * cellWidth, (gameFieldHeight - y - 1) * cellHeight, cellWidth - 2, cellHeight - 2)];
-            [p fill];
-            [p stroke];
+            [gameField[x][y] drawInRect: NSMakeRect(x * cellWidth, (gameFieldHeight - y - 1) * cellHeight, cellWidth, cellHeight)
+                               fromRect: [self cellRect]
+                              operation: NSCompositeCopy
+                               fraction: 1.0f];
         }
     } 
 }
@@ -121,16 +96,11 @@ const int gameFieldHeight = 28;
     [self drawGameField];
     
     // рисуем следующую фигуру
-    [self drawFigure: nextFigure 
-                 atX: gameFieldWidth + 1
-                andY: 0
-         doDrawEmpty:true];
+    [nextFigure drawFigureOnField: self atX: gameFieldWidth + 1 andY: 0 doDrawEmpty: true];
     
     // если в игре, рисуем текущую фигуру
     if ([_inGame boolValue]) {
-        [self drawFigure: currentFigure
-                     atX: currentPos.x
-                    andY: currentPos.y];
+        [currentFigure drawFigureOnField: self atX: currentPos.x andY: currentPos.y];
     }
 }
 
@@ -257,6 +227,7 @@ const int gameFieldHeight = 28;
         // нашли полностью заполненную линию
         if (lineIsFull) {
             self.score = [NSNumber numberWithInt: _score.integerValue + 5];
+            self.lines = [NSNumber numberWithInt: _lines.integerValue + 1];
             
             // сжатие (стакан не сжимаем)
             for (cy = vy - 1; cy >= 0; cy--) {
@@ -268,7 +239,7 @@ const int gameFieldHeight = 28;
             
             // обнуляем верхнюю строку (без границ справа и слева)
             for (cx = 1; cx < (gameFieldWidth - 1); cx++) {
-                gameField[cx][0] = [NSColor blackColor];
+                gameField[cx][0] = _fieldImage;
                 gameFieldData[cx][0] = false;
             }
         }
@@ -299,6 +270,7 @@ const int gameFieldHeight = 28;
             } else {
                 // все ок, прибавляем очки и обновляем их в окне
                 self.score = [NSNumber numberWithInt: _score.integerValue + 1];
+                self.figures = [NSNumber numberWithInt: _figures.integerValue + 1];
             }
         } else 
             // просто перемещаем вниз
@@ -312,6 +284,8 @@ const int gameFieldHeight = 28;
     nextFigure = [[MVTetrisFigure alloc] init];
     [nextFigure randomKind];
     self.score = [NSNumber numberWithInt: 0];
+    self.figures = [NSNumber numberWithInt: 0];
+    self.lines = [NSNumber numberWithInt: 0];
 }
 
 // остановка игры
@@ -326,6 +300,14 @@ const int gameFieldHeight = 28;
     [self newFigure];
     [labelTitleScore setStringValue: @"Score:"];
     self.inGame = [NSNumber numberWithBool: true];
+}
+
+- (IBAction) highScores:(id)sender {
+    [highScoresDrawer toggle: self];
+}
+
+- (NSRect) cellRect {
+    return NSMakeRect(0, 0, self.fieldImage.size.width + 1, self.fieldImage.size.height + 1);
 }
 
 @end

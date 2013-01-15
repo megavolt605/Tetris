@@ -33,22 +33,29 @@ typedef struct {
 } coord;
 
 // цвета фигур
-NSColor * figureColors [fkCount];
+NSImage * figureImages [fkCount];
+
+@class MVTetris;
 
 @interface MVTetrisFigure : NSObject
 
-    // поворот фигуры
-    - (void) rotate;
+// поворот фигуры
+- (void) rotate;
 
-    // выбор случайного типа фигуры
-    - (void) randomKind;
+// выбор случайного типа фигуры
+- (void) randomKind;
 
-    // клонирование текущей фигуры
-    - (MVTetrisFigure *) clone;
+// клонирование текущей фигуры
+- (MVTetrisFigure *) clone;
 
-    // объявление свойств
-    @property (nonatomic, readwrite) figureKind kind;  // тип фигуры
-    @property (readonly) figureShape shape; // изображение фигуры
-    @property (readwrite) NSColor * color; // цвет фигуры
+// прорисовка фигуры по координатам (координаты по вертикали переворачиваются)
+- (void) drawFigureOnField: (MVTetris *) aField atX: (double) aX andY: (double) aY doDrawEmpty: (Boolean) aDoDrawEmpty;
+- (void) drawFigureOnField: (MVTetris *) aField atX: (int) aX andY: (int) aY;
+
+
+// объявление свойств
+@property (nonatomic, readwrite) figureKind kind;  // тип фигуры
+@property (readonly) figureShape shape; // изображение фигуры
+@property (readwrite) NSImage * color; // цвет фигуры
 
 @end

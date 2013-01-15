@@ -7,6 +7,7 @@
 //
 
 #import "MVAppDelegate.h"
+#import "MVTetrisPreferencesWindowController.h"
 
 @implementation MVAppDelegate
 
@@ -15,6 +16,13 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+}
+
+- (IBAction) showPreferences: (id) sender {
+    if (!preferences) {
+        preferences = [MVTetrisPreferencesWindowController new];
+    }
+    [preferences showWindow: self];
 }
 
 @end

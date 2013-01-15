@@ -7,6 +7,7 @@
 //
 
 #import "MVTetrisFigure.h"
+#import "MVTetris.h"
 
 // координаты с занятыми ячейками для всех типов фигур
 const coord figureShapes[7][4] = { 
@@ -44,7 +45,7 @@ const coord figureShapes[7][4] = {
     _kind = newKind;
 
     // указываем цвет
-    self.color = figureColors[_kind];
+    self.color = figureImages[_kind];
 
     // прорисовка нового изображения
     if (_kind != fkUnknown) {
@@ -93,5 +94,38 @@ const coord figureShapes[7][4] = {
     res.color = self.color;
     return res;
 }
+
+
+// прорисовка фигуры по координатам (координаты по вертикали переворачиваются)
+- (void) drawFigureOnField: (MVTetris *) aField atX: (double) aX andY: (double) aY doDrawEmpty: (Boolean) aDoDrawEmpty {
+    NSRect rect;
+    float cellWidth = [aField bounds].size.width / (gameFieldWidth + 5);
+    float cellHeight = [aField bounds].size.height / gameFieldHeight;
+    for (int y = 0; y < 4; y++) {
+        for (int x = 0; x < 4; x++) {
+            rect = NSMakeRect( (aX + x ) * cellWidth , (gameFieldHeight - y - 1 - aY) * cellHeight, cellWidth, cellHeight);
+            
+            if ([self shape].figure[x][y]) {
+                
+                // ячейка занята
+                [self.color drawInRect: rect fromRect: aField.cellRect operation: NSCompositeCopy fraction: 1.0f];
+                
+            } else {
+                // или свободна
+                
+                // когда фигура рисуется на поле, пустые ячейки не нужно рисовать (затираются ячейки поля)
+                if (aDoDrawEmpty) {
+                    [aField.fieldImage drawInRect:rect fromRect: aField.cellRect operation: NSCompositeCopy fraction: 1.0f];
+                }
+            }
+        }
+    }
+}
+
+- (void) drawFigureOnField: (MVTetris *) aField atX: (int) aX andY: (int) aY {
+    [self drawFigureOnField: aField atX: aX andY: aY doDrawEmpty: false];
+}
+
+
 
 @end

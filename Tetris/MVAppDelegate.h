@@ -9,9 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "MVTetris.h"
 
-@interface MVAppDelegate : NSObject <NSApplicationDelegate>
+@class MVTetrisPreferencesWindowController;
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet MVTetris *field;
+@interface MVAppDelegate : NSObject <NSApplicationDelegate> {
+    IBOutlet MVTetrisPreferencesWindowController * preferences;
+}
+
+- (IBAction) showPreferences: (id) sender;
+
+@property (assign) IBOutlet NSWindow * window;
+@property (assign) IBOutlet MVTetris * field;
 
 @end

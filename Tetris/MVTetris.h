@@ -17,22 +17,31 @@ extern const int gameFieldHeight;
     // связка с полем с заголовком игровых очков
     IBOutlet NSTextField * labelTitleScore;
     
-    // связка с текстовым полем для вывода количества очков
-    IBOutlet NSTextField * labelScore;
-    
     // связка с кнопкой начала игры
     IBOutlet NSButton * newGameButton;
 
     // связка с кнопкой остановки игры
     IBOutlet NSButton * stopGameButton;
+    
+    IBOutlet NSDrawer * highScoresDrawer;
+    
 }
 
 // связка с событием нажатия кнопки
-- (IBAction) newGame:(id)sender;
-- (IBAction) stopGame:(id)sender;
+- (IBAction) newGame: (id) sender;
+- (IBAction) stopGame: (id) sender;
 
-@property NSNumber *inGame;
-@property NSNumber *score;   // текущее количество очков
+// показ/скрытие таблицы рекордов
+- (IBAction) highScores: (id) sender;
 
+- (NSRect) cellRect;
+
+@property (readonly) NSImage * fieldImage;
+@property (readonly) NSImage * wallImage;
+
+@property (assign) NSNumber * inGame;
+@property (assign) NSNumber * score;   // текущее количество очков
+@property (assign) NSNumber * figures; // текущее количество фигур
+@property (assign) NSNumber * lines;   // текущее количество линий
 
 @end
