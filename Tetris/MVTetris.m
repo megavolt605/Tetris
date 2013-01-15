@@ -286,19 +286,19 @@ const int gameFieldHeight = 28;
     self.score = [NSNumber numberWithInt: 0];
     self.figures = [NSNumber numberWithInt: 0];
     self.lines = [NSNumber numberWithInt: 0];
+    [labelTitleScore setStringValue: @"Очки:"];
 }
 
 // остановка игры
 - (IBAction) stopGame:(id)sender {
     self.inGame = [NSNumber numberWithBool: false];
-    [labelTitleScore setStringValue: @"Final score:"];
 }
 
 // начало новой игры
 - (IBAction) newGame:(id)sender {
     [self clearGame];
     [self newFigure];
-    [labelTitleScore setStringValue: @"Score:"];
+    [labelTitleScore setStringValue: @"Очки:"];
     self.inGame = [NSNumber numberWithBool: true];
 }
 
