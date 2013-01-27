@@ -19,37 +19,49 @@ NSString * const MVTetrisPreferences_HighScores = @"HighScores";
 
 + (void) initialize {
     NSMutableDictionary * defaults = [NSMutableDictionary dictionary];
-    NSMutableArray * emptyHighScores = [NSMutableArray array];
-    [defaults setObject: emptyHighScores forKey: MVTetrisPreferences_HighScores];
+    NSMutableArray * defaultHighScores = [NSMutableArray array];
+    
+    [defaults setObject: defaultHighScores forKey: MVTetrisPreferences_HighScores];
 
     [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
 }
     
 - (id) init {
     self = [super initWithWindowNibName: @"MVTetrisPreferences"];
-    NSMutableArray * ttt = [NSMutableArray new];
-    [ttt addObject: [[MVTetrisHighScore alloc] init]];
-    [ttt addObject: [[MVTetrisHighScore alloc] init]];
-    [ttt addObject: [[MVTetrisHighScore alloc] init]];
-    self.highScores = ttt;
     return self;
 }
 
 - (NSMutableArray *) highScores {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * loadedHighScores = [defaults objectForKey: MVTetrisPreferences_HighScores];
-    return loadedHighScores;
+    NSArray * loadedHighScores = [[defaults objectForKey: MVTetrisPreferences_HighScores] mutableCopy];
+    NSMutableArray * resultHighScores = [NSMutableArray new];
+    
+    for (NSDictionary * dict in loadedHighScores) {
+        MVTetrisHighScore * score = [MVTetrisHighScore highScore: [dict valueForKey: @"score"] forDate: [dict valueForKey: @"date"]];
+        [resultHighScores addObject: score];
+    }
+    
+    return resultHighScores;
 }
 
 - (void) setHighScores:(NSMutableArray *)highScores {
-    [[NSUserDefaults standardUserDefaults] setObject: highScores forKey: MVTetrisPreferences_HighScores];
+    NSMutableArray * savedHighScores = [NSMutableArray new];
+    for (MVTetrisHighScore * score in highScores) {
+        NSMutableDictionary * scoreDict = [NSMutableDictionary new];
+        [scoreDict setObject: score.date forKey: @"date"];
+        [scoreDict setObject: score.score forKey: @"score"];
+        [savedHighScores addObject: scoreDict];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject: savedHighScores forKey: MVTetrisPreferences_HighScores];
+}
+
+- (IBAction) clearHighScores: (id) sender {
+    self.highScores = [NSMutableArray new];
 }
 
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 @end

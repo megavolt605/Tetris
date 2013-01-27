@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "MVTetrisFigure.h"
 
+@class MVTetrisPreferencesWindowController;
+
 // размеры игрового поля
 extern const int gameFieldWidth;
 extern const int gameFieldHeight;
@@ -25,6 +27,8 @@ extern const int gameFieldHeight;
     
     IBOutlet NSDrawer * highScoresDrawer;
     
+    IBOutlet MVTetrisPreferencesWindowController * highScoresPreferencesController;
+    
 }
 
 // связка с событием нажатия кнопки
@@ -39,7 +43,8 @@ extern const int gameFieldHeight;
 @property (readonly) NSImage * fieldImage;
 @property (readonly) NSImage * wallImage;
 
-@property (assign) NSNumber * inGame;
+@property (assign) NSNumber * inGame;  // признак активности игры
+@property (assign) NSNumber * level;   // текущий уровень
 @property (assign) NSNumber * score;   // текущее количество очков
 @property (assign) NSNumber * figures; // текущее количество фигур
 @property (assign) NSNumber * lines;   // текущее количество линий

@@ -27,8 +27,8 @@
 		B3AEA6A416A5C0600057F5B0 /* Tetris_04.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69D16A5C0600057F5B0 /* Tetris_04.png */; };
 		B3AEA6A516A5C0600057F5B0 /* Tetris_05.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69E16A5C0600057F5B0 /* Tetris_05.png */; };
 		B3AEA6A616A5C0600057F5B0 /* Tetris_06.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69F16A5C0600057F5B0 /* Tetris_06.png */; };
-		B3AEA6A716A5C0600057F5B0 /* Tetris_07.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A016A5C0600057F5B0 /* Tetris_07.png */; };
-		B3AEA6A916A5C7200057F5B0 /* Tetris_08.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A816A5C7200057F5B0 /* Tetris_08.png */; };
+		B3AEA6A716A5C0600057F5B0 /* Tetris_wall.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A016A5C0600057F5B0 /* Tetris_wall.png */; };
+		B3AEA6A916A5C7200057F5B0 /* Tetris_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A816A5C7200057F5B0 /* Tetris_empty.png */; };
 		B3B4B118169F422A0001EAEE /* MVTetrisHighScore.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B4B117169F422A0001EAEE /* MVTetrisHighScore.m */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +75,8 @@
 		B3AEA69D16A5C0600057F5B0 /* Tetris_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_04.png; path = Images/Tetris_04.png; sourceTree = "<group>"; };
 		B3AEA69E16A5C0600057F5B0 /* Tetris_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_05.png; path = Images/Tetris_05.png; sourceTree = "<group>"; };
 		B3AEA69F16A5C0600057F5B0 /* Tetris_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_06.png; path = Images/Tetris_06.png; sourceTree = "<group>"; };
-		B3AEA6A016A5C0600057F5B0 /* Tetris_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_07.png; path = Images/Tetris_07.png; sourceTree = "<group>"; };
-		B3AEA6A816A5C7200057F5B0 /* Tetris_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_08.png; path = Images/Tetris_08.png; sourceTree = "<group>"; };
+		B3AEA6A016A5C0600057F5B0 /* Tetris_wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_wall.png; path = Images/Tetris_wall.png; sourceTree = "<group>"; };
+		B3AEA6A816A5C7200057F5B0 /* Tetris_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_empty.png; path = Images/Tetris_empty.png; sourceTree = "<group>"; };
 		B3B4B116169F422A0001EAEE /* MVTetrisHighScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVTetrisHighScore.h; sourceTree = "<group>"; };
 		B3B4B117169F422A0001EAEE /* MVTetrisHighScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVTetrisHighScore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,8 +210,8 @@
 				B3AEA69D16A5C0600057F5B0 /* Tetris_04.png */,
 				B3AEA69E16A5C0600057F5B0 /* Tetris_05.png */,
 				B3AEA69F16A5C0600057F5B0 /* Tetris_06.png */,
-				B3AEA6A016A5C0600057F5B0 /* Tetris_07.png */,
-				B3AEA6A816A5C7200057F5B0 /* Tetris_08.png */,
+				B3AEA6A016A5C0600057F5B0 /* Tetris_wall.png */,
+				B3AEA6A816A5C7200057F5B0 /* Tetris_empty.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -298,8 +298,8 @@
 				B3AEA6A416A5C0600057F5B0 /* Tetris_04.png in Resources */,
 				B3AEA6A516A5C0600057F5B0 /* Tetris_05.png in Resources */,
 				B3AEA6A616A5C0600057F5B0 /* Tetris_06.png in Resources */,
-				B3AEA6A716A5C0600057F5B0 /* Tetris_07.png in Resources */,
-				B3AEA6A916A5C7200057F5B0 /* Tetris_08.png in Resources */,
+				B3AEA6A716A5C0600057F5B0 /* Tetris_wall.png in Resources */,
+				B3AEA6A916A5C7200057F5B0 /* Tetris_empty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,13 @@
 //
 
 #import "MVTetris.h"
+#import "MVTetrisPreferencesWindowController.h"
+#import "MVTetrisHighScore.h"
 
 // размеры игрового поля
 const int gameFieldWidth  = 16;
 const int gameFieldHeight = 28;
+const int linesToLevelUp = 3;
 
 @implementation MVTetris {
     NSImage * gameField [gameFieldWidth] [gameFieldHeight];     // цвета на поле
@@ -36,12 +39,15 @@ const int gameFieldHeight = 28;
         figureImages[fkSquare] = [NSImage imageNamed: @"Tetris_05.png"];
         figureImages[fkZ] = [NSImage imageNamed: @"Tetris_06.png"];
         
-        _wallImage = [NSImage imageNamed: @"Tetris_07.png"];
-        _fieldImage = [NSImage imageNamed: @"Tetris_08.png"];
+        _wallImage = [NSImage imageNamed: @"Tetris_wall.png"];
+        _fieldImage = [NSImage imageNamed: @"Tetris_empty.png"];
         
-        // инициализируем таймеры
-        timerRedraw = [NSTimer scheduledTimerWithTimeInterval: 0.1f target: self selector: @selector(tickRedraw:) userInfo: nil repeats: true];
-        timerGame = [NSTimer scheduledTimerWithTimeInterval: 0.2f target: self selector: @selector(tickGame:) userInfo: nil repeats: true];
+        // инициализируем таймер перерисовки
+        timerRedraw = [NSTimer scheduledTimerWithTimeInterval: 0.05f
+                                                       target: self
+                                                     selector: @selector(tickRedraw:)
+                                                     userInfo: nil
+                                                      repeats: true];
         
         [self clearGame];
     }
@@ -166,11 +172,12 @@ const int gameFieldHeight = 28;
     }
     
     // в принципе, должны найти всегда, т.к. низ стакана не пустой но на всякий случай - проверка
-    if (found)
+    if (found) {
         currentPos.y = y; // все остальное (фиксирование фигуры, пр. произойдет по тику таймера)
-    else 
+        [timerGame fire];
+    } else {
         NSLog(@"Падение: Я не должен увидеть это в протоколе");
-    
+    }
 }
 
 // событие: кнопка влево
@@ -226,8 +233,21 @@ const int gameFieldHeight = 28;
         
         // нашли полностью заполненную линию
         if (lineIsFull) {
-            self.score = [NSNumber numberWithInt: _score.integerValue + 5];
-            self.lines = [NSNumber numberWithInt: _lines.integerValue + 1];
+            self.score = [NSNumber numberWithInt: self.score.integerValue + 5];
+            self.lines = [NSNumber numberWithInt: self.lines.integerValue + 1];
+            
+            // увеличиваем уровень
+            if ((self.lines.integerValue % linesToLevelUp) == 0) {
+                self.level = [NSNumber numberWithInt: self.level.integerValue + 1];
+                if (self.level.integerValue < 10) {
+                    [timerGame invalidate];
+                    timerGame = [NSTimer scheduledTimerWithTimeInterval: 1.0f - (self.level.floatValue / 10.0f)
+                                                                 target: self
+                                                               selector: @selector(tickGame:)
+                                                               userInfo: nil
+                                                                repeats: true];
+                }
+            }
             
             // сжатие (стакан не сжимаем)
             for (cy = vy - 1; cy >= 0; cy--) {
@@ -269,8 +289,8 @@ const int gameFieldHeight = 28;
                 [self stopGame:nil];
             } else {
                 // все ок, прибавляем очки и обновляем их в окне
-                self.score = [NSNumber numberWithInt: _score.integerValue + 1];
-                self.figures = [NSNumber numberWithInt: _figures.integerValue + 1];
+                self.score = [NSNumber numberWithInt: self.score.integerValue + 1];
+                self.figures = [NSNumber numberWithInt: self.figures.integerValue + 1];
             }
         } else 
             // просто перемещаем вниз
@@ -283,15 +303,22 @@ const int gameFieldHeight = 28;
     [self clearGameField];
     nextFigure = [[MVTetrisFigure alloc] init];
     [nextFigure randomKind];
+    self.level = [NSNumber numberWithInt: 1];
     self.score = [NSNumber numberWithInt: 0];
     self.figures = [NSNumber numberWithInt: 0];
     self.lines = [NSNumber numberWithInt: 0];
     [labelTitleScore setStringValue: @"Очки:"];
+
 }
 
 // остановка игры
 - (IBAction) stopGame:(id)sender {
     self.inGame = [NSNumber numberWithBool: false];
+    NSMutableArray * scores = highScoresPreferencesController.highScores;
+    [scores insertObject: [MVTetrisHighScore highScore: self.score] atIndex: 0];
+    highScoresPreferencesController.highScores = scores;
+    [timerGame invalidate];
+    timerGame = nil;
 }
 
 // начало новой игры
@@ -300,8 +327,14 @@ const int gameFieldHeight = 28;
     [self newFigure];
     [labelTitleScore setStringValue: @"Очки:"];
     self.inGame = [NSNumber numberWithBool: true];
+    timerGame = [NSTimer scheduledTimerWithTimeInterval: 1.0f
+                                                 target: self
+                                               selector: @selector(tickGame:)
+                                               userInfo: nil
+                                                repeats: true];
 }
 
+// отображение / скрытие окна с результатами игр
 - (IBAction) highScores:(id)sender {
     [highScoresDrawer toggle: self];
 }

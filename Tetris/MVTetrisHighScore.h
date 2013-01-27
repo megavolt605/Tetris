@@ -10,7 +10,10 @@
 
 @interface MVTetrisHighScore : NSObject
 
++ (MVTetrisHighScore *) highScore: (NSNumber *) aScore;
++ (MVTetrisHighScore *) highScore: (NSNumber *) aScore forDate: (NSDate *) date;
+
 @property NSDate * date;
-@property int score;
+@property NSNumber * score;
 
 @end

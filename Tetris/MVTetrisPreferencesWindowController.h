@@ -17,4 +17,6 @@ extern NSString * const MVTetrisPreferences_HighScores;
 
 @property NSMutableArray * highScores;
 
+- (IBAction) clearHighScores: (id) sender;
+
 @end

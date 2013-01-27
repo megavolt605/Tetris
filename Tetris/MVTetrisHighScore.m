@@ -10,10 +10,21 @@
 
 @implementation MVTetrisHighScore
 
++ (MVTetrisHighScore *) highScore: (NSNumber *) aScore {
+    return [MVTetrisHighScore highScore: aScore forDate: [NSDate date]];
+}
+
++ (MVTetrisHighScore *) highScore: (NSNumber *) aScore forDate: (NSDate *) date {
+    MVTetrisHighScore * result = [[MVTetrisHighScore alloc] init];
+    result.score = aScore;
+    result.date = date;
+    return result;
+}
+
 - (MVTetrisHighScore *) init {
     if (self = [super init]) {
-        _date = [NSDate date];
-        _score = 0;
+        self.date = [NSDate date];
+        self.score = [NSNumber numberWithInt: 0];
     }
     return self;
 }

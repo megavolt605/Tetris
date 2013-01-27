@@ -25,4 +25,8 @@
     [preferences showWindow: self];
 }
 
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
+    return true;
+}
+
 @end
