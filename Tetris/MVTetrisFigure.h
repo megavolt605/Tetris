@@ -12,13 +12,14 @@
 typedef enum figureKind {
     fkFirst,
     fkUnknown = fkFirst, 
-    fkSquare,
-    fkLine,
+    fkO,
+    fkI,
     fkL, 
     fkJ, 
     fkS, 
     fkZ,
-    fkLast = fkZ,
+    fkT,
+    fkLast = fkT,
     fkCount
 } figureKind;
 

@@ -10,14 +10,15 @@
 #import "MVTetris.h"
 
 // координаты с занятыми ячейками для всех типов фигур
-const coord figureShapes[7][4] = { 
+const coord figureShapes[fkCount][4] = { 
     /* fkUnknown */ {},
-    /* fkSquare  */ { {1,1}, {1,2}, {2,1}, {2,2} },
-    /* fkLine    */ { {1,0}, {1,1}, {1,2}, {1,3} },
+    /* fkO       */ { {1,1}, {1,2}, {2,1}, {2,2} },
+    /* fkI       */ { {1,0}, {1,1}, {1,2}, {1,3} },
     /* fkL       */ { {1,0}, {1,1}, {1,2}, {2,2} },
     /* fkJ       */ { {2,0}, {2,1}, {2,2}, {1,2} },
     /* fkS       */ { {1,1}, {2,1}, {0,2}, {1,2} },
-    /* fkZ       */ { {0,1}, {1,1}, {1,2}, {2,2} }
+    /* fkZ       */ { {0,1}, {1,1}, {1,2}, {2,2} },
+    /* fkT       */ { {1,2}, {2,2}, {3,2}, {2,1} }
 };
 
 @implementation MVTetrisFigure
@@ -83,7 +84,15 @@ const coord figureShapes[7][4] = {
 
 // выбор случайного типа фигуры
 - (void) randomKind {
-    self.kind = arc4random_uniform(6) + 1;
+    self.kind = arc4random_uniform(fkCount - 1) + 1;
+}
+
+- (void) copyShapeFromFigure: (MVTetrisFigure *) aSource {
+    for (int x = 0; x < 4; x++) {
+        for (int y = 0; y < 4; y++) {
+            _shape.figure[x][y] = aSource.shape.figure[x][y];
+        }
+    }
 }
 
 // клонирование текущей фигуры
@@ -92,6 +101,8 @@ const coord figureShapes[7][4] = {
     res = [[MVTetrisFigure alloc] init];
     res.kind = self.kind;
     res.color = self.color;
+    // обязательно копируем текущее положение фигуры (оно может отличаться от стандартного, после присвояния res.kind)
+    [res copyShapeFromFigure: self];
     return res;
 }
 

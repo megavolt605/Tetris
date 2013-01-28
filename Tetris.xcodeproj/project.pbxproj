@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B30844F71594C51A00C71533 /* MVTetrisFigure.m in Sources */ = {isa = PBXBuildFile; fileRef = B30844F61594C51A00C71533 /* MVTetrisFigure.m */; };
+		B365BB2116B6DD6E00AD1347 /* Tetris_Brown.png in Resources */ = {isa = PBXBuildFile; fileRef = B365BB2016B6DD6E00AD1347 /* Tetris_Brown.png */; };
 		B386E1D11592215A0054C40C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B386E1D01592215A0054C40C /* Cocoa.framework */; };
 		B386E1DB1592215A0054C40C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B386E1D91592215A0054C40C /* InfoPlist.strings */; };
 		B386E1DD1592215A0054C40C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B386E1DC1592215A0054C40C /* main.m */; };
@@ -21,14 +22,14 @@
 		B386E2061592218E0054C40C /* MVTetris.m in Sources */ = {isa = PBXBuildFile; fileRef = B386E2051592218E0054C40C /* MVTetris.m */; };
 		B3AD0FF316A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD0FF216A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m */; };
 		B3AD0FF816A17C6A007F3D57 /* MVTetrisPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AD0FF716A17C6A007F3D57 /* MVTetrisPreferences.xib */; };
-		B3AEA6A116A5C0600057F5B0 /* Tetris_01.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69A16A5C0600057F5B0 /* Tetris_01.png */; };
-		B3AEA6A216A5C0600057F5B0 /* Tetris_02.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69B16A5C0600057F5B0 /* Tetris_02.png */; };
-		B3AEA6A316A5C0600057F5B0 /* Tetris_03.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69C16A5C0600057F5B0 /* Tetris_03.png */; };
-		B3AEA6A416A5C0600057F5B0 /* Tetris_04.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69D16A5C0600057F5B0 /* Tetris_04.png */; };
-		B3AEA6A516A5C0600057F5B0 /* Tetris_05.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69E16A5C0600057F5B0 /* Tetris_05.png */; };
-		B3AEA6A616A5C0600057F5B0 /* Tetris_06.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69F16A5C0600057F5B0 /* Tetris_06.png */; };
-		B3AEA6A716A5C0600057F5B0 /* Tetris_wall.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A016A5C0600057F5B0 /* Tetris_wall.png */; };
-		B3AEA6A916A5C7200057F5B0 /* Tetris_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A816A5C7200057F5B0 /* Tetris_empty.png */; };
+		B3AEA6A116A5C0600057F5B0 /* Tetris_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69A16A5C0600057F5B0 /* Tetris_Red.png */; };
+		B3AEA6A216A5C0600057F5B0 /* Tetris_Green.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69B16A5C0600057F5B0 /* Tetris_Green.png */; };
+		B3AEA6A316A5C0600057F5B0 /* Tetris_Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69C16A5C0600057F5B0 /* Tetris_Blue.png */; };
+		B3AEA6A416A5C0600057F5B0 /* Tetris_Magenta.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69D16A5C0600057F5B0 /* Tetris_Magenta.png */; };
+		B3AEA6A516A5C0600057F5B0 /* Tetris_Cyan.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69E16A5C0600057F5B0 /* Tetris_Cyan.png */; };
+		B3AEA6A616A5C0600057F5B0 /* Tetris_Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69F16A5C0600057F5B0 /* Tetris_Yellow.png */; };
+		B3AEA6A716A5C0600057F5B0 /* Tetris_Gray.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A016A5C0600057F5B0 /* Tetris_Gray.png */; };
+		B3AEA6A916A5C7200057F5B0 /* Tetris_Black.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA6A816A5C7200057F5B0 /* Tetris_Black.png */; };
 		B3B4B118169F422A0001EAEE /* MVTetrisHighScore.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B4B117169F422A0001EAEE /* MVTetrisHighScore.m */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		B30844F51594C51A00C71533 /* MVTetrisFigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVTetrisFigure.h; sourceTree = "<group>"; };
 		B30844F61594C51A00C71533 /* MVTetrisFigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVTetrisFigure.m; sourceTree = "<group>"; };
+		B365BB2016B6DD6E00AD1347 /* Tetris_Brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Brown.png; path = Images/Tetris_Brown.png; sourceTree = "<group>"; };
 		B386E1CC1592215A0054C40C /* Tetris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tetris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B386E1D01592215A0054C40C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B386E1D31592215A0054C40C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -69,14 +71,14 @@
 		B3AD0FF116A17B8E007F3D57 /* MVTetrisPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVTetrisPreferencesWindowController.h; sourceTree = "<group>"; };
 		B3AD0FF216A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVTetrisPreferencesWindowController.m; sourceTree = "<group>"; };
 		B3AD0FF716A17C6A007F3D57 /* MVTetrisPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MVTetrisPreferences.xib; sourceTree = "<group>"; };
-		B3AEA69A16A5C0600057F5B0 /* Tetris_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_01.png; path = Images/Tetris_01.png; sourceTree = "<group>"; };
-		B3AEA69B16A5C0600057F5B0 /* Tetris_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_02.png; path = Images/Tetris_02.png; sourceTree = "<group>"; };
-		B3AEA69C16A5C0600057F5B0 /* Tetris_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_03.png; path = Images/Tetris_03.png; sourceTree = "<group>"; };
-		B3AEA69D16A5C0600057F5B0 /* Tetris_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_04.png; path = Images/Tetris_04.png; sourceTree = "<group>"; };
-		B3AEA69E16A5C0600057F5B0 /* Tetris_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_05.png; path = Images/Tetris_05.png; sourceTree = "<group>"; };
-		B3AEA69F16A5C0600057F5B0 /* Tetris_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_06.png; path = Images/Tetris_06.png; sourceTree = "<group>"; };
-		B3AEA6A016A5C0600057F5B0 /* Tetris_wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_wall.png; path = Images/Tetris_wall.png; sourceTree = "<group>"; };
-		B3AEA6A816A5C7200057F5B0 /* Tetris_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_empty.png; path = Images/Tetris_empty.png; sourceTree = "<group>"; };
+		B3AEA69A16A5C0600057F5B0 /* Tetris_Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Red.png; path = Images/Tetris_Red.png; sourceTree = "<group>"; };
+		B3AEA69B16A5C0600057F5B0 /* Tetris_Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Green.png; path = Images/Tetris_Green.png; sourceTree = "<group>"; };
+		B3AEA69C16A5C0600057F5B0 /* Tetris_Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Blue.png; path = Images/Tetris_Blue.png; sourceTree = "<group>"; };
+		B3AEA69D16A5C0600057F5B0 /* Tetris_Magenta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Magenta.png; path = Images/Tetris_Magenta.png; sourceTree = "<group>"; };
+		B3AEA69E16A5C0600057F5B0 /* Tetris_Cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Cyan.png; path = Images/Tetris_Cyan.png; sourceTree = "<group>"; };
+		B3AEA69F16A5C0600057F5B0 /* Tetris_Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Yellow.png; path = Images/Tetris_Yellow.png; sourceTree = "<group>"; };
+		B3AEA6A016A5C0600057F5B0 /* Tetris_Gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Gray.png; path = Images/Tetris_Gray.png; sourceTree = "<group>"; };
+		B3AEA6A816A5C7200057F5B0 /* Tetris_Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tetris_Black.png; path = Images/Tetris_Black.png; sourceTree = "<group>"; };
 		B3B4B116169F422A0001EAEE /* MVTetrisHighScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVTetrisHighScore.h; sourceTree = "<group>"; };
 		B3B4B117169F422A0001EAEE /* MVTetrisHighScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVTetrisHighScore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,14 +206,15 @@
 		B3AEA69816A5BC170057F5B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				B3AEA69A16A5C0600057F5B0 /* Tetris_01.png */,
-				B3AEA69B16A5C0600057F5B0 /* Tetris_02.png */,
-				B3AEA69C16A5C0600057F5B0 /* Tetris_03.png */,
-				B3AEA69D16A5C0600057F5B0 /* Tetris_04.png */,
-				B3AEA69E16A5C0600057F5B0 /* Tetris_05.png */,
-				B3AEA69F16A5C0600057F5B0 /* Tetris_06.png */,
-				B3AEA6A016A5C0600057F5B0 /* Tetris_wall.png */,
-				B3AEA6A816A5C7200057F5B0 /* Tetris_empty.png */,
+				B3AEA69A16A5C0600057F5B0 /* Tetris_Red.png */,
+				B3AEA69B16A5C0600057F5B0 /* Tetris_Green.png */,
+				B3AEA69C16A5C0600057F5B0 /* Tetris_Blue.png */,
+				B3AEA69D16A5C0600057F5B0 /* Tetris_Magenta.png */,
+				B3AEA69E16A5C0600057F5B0 /* Tetris_Cyan.png */,
+				B3AEA69F16A5C0600057F5B0 /* Tetris_Yellow.png */,
+				B3AEA6A016A5C0600057F5B0 /* Tetris_Gray.png */,
+				B3AEA6A816A5C7200057F5B0 /* Tetris_Black.png */,
+				B365BB2016B6DD6E00AD1347 /* Tetris_Brown.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -292,14 +295,15 @@
 				B386E1E11592215A0054C40C /* Credits.rtf in Resources */,
 				B386E1E71592215A0054C40C /* MainMenu.xib in Resources */,
 				B3AD0FF816A17C6A007F3D57 /* MVTetrisPreferences.xib in Resources */,
-				B3AEA6A116A5C0600057F5B0 /* Tetris_01.png in Resources */,
-				B3AEA6A216A5C0600057F5B0 /* Tetris_02.png in Resources */,
-				B3AEA6A316A5C0600057F5B0 /* Tetris_03.png in Resources */,
-				B3AEA6A416A5C0600057F5B0 /* Tetris_04.png in Resources */,
-				B3AEA6A516A5C0600057F5B0 /* Tetris_05.png in Resources */,
-				B3AEA6A616A5C0600057F5B0 /* Tetris_06.png in Resources */,
-				B3AEA6A716A5C0600057F5B0 /* Tetris_wall.png in Resources */,
-				B3AEA6A916A5C7200057F5B0 /* Tetris_empty.png in Resources */,
+				B3AEA6A116A5C0600057F5B0 /* Tetris_Red.png in Resources */,
+				B3AEA6A216A5C0600057F5B0 /* Tetris_Green.png in Resources */,
+				B3AEA6A316A5C0600057F5B0 /* Tetris_Blue.png in Resources */,
+				B3AEA6A416A5C0600057F5B0 /* Tetris_Magenta.png in Resources */,
+				B3AEA6A516A5C0600057F5B0 /* Tetris_Cyan.png in Resources */,
+				B3AEA6A616A5C0600057F5B0 /* Tetris_Yellow.png in Resources */,
+				B3AEA6A716A5C0600057F5B0 /* Tetris_Gray.png in Resources */,
+				B3AEA6A916A5C7200057F5B0 /* Tetris_Black.png in Resources */,
+				B365BB2116B6DD6E00AD1347 /* Tetris_Brown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

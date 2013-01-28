@@ -32,15 +32,16 @@ const int linesToLevelUp = 3;
         self.inGame = [NSNumber numberWithBool: false];
         
         // создаем картинки
-        figureImages[fkJ] = [NSImage imageNamed: @"Tetris_01.png"];
-        figureImages[fkL] = [NSImage imageNamed: @"Tetris_02.png"];
-        figureImages[fkLine] = [NSImage imageNamed: @"Tetris_03.png"];
-        figureImages[fkS] = [NSImage imageNamed: @"Tetris_04.png"];
-        figureImages[fkSquare] = [NSImage imageNamed: @"Tetris_05.png"];
-        figureImages[fkZ] = [NSImage imageNamed: @"Tetris_06.png"];
+        figureImages[fkJ] = [NSImage imageNamed: @"Tetris_Blue.png"];
+        figureImages[fkL] = [NSImage imageNamed: @"Tetris_Brown.png"];
+        figureImages[fkI] = [NSImage imageNamed: @"Tetris_Cyan.png"];
+        figureImages[fkS] = [NSImage imageNamed: @"Tetris_Green.png"];
+        figureImages[fkO] = [NSImage imageNamed: @"Tetris_Yellow.png"];
+        figureImages[fkZ] = [NSImage imageNamed: @"Tetris_Red.png"];
+        figureImages[fkT] = [NSImage imageNamed: @"Tetris_Magenta.png"];
         
-        _wallImage = [NSImage imageNamed: @"Tetris_wall.png"];
-        _fieldImage = [NSImage imageNamed: @"Tetris_empty.png"];
+        _wallImage = [NSImage imageNamed: @"Tetris_Gray.png"];
+        _fieldImage = [NSImage imageNamed: @"Tetris_Black.png"];
         
         // инициализируем таймер перерисовки
         timerRedraw = [NSTimer scheduledTimerWithTimeInterval: 0.05f
@@ -236,7 +237,7 @@ const int linesToLevelUp = 3;
             self.score = [NSNumber numberWithInt: self.score.integerValue + 5];
             self.lines = [NSNumber numberWithInt: self.lines.integerValue + 1];
             
-            // увеличиваем уровень
+            // при необходимости увеличиваем уровень
             if ((self.lines.integerValue % linesToLevelUp) == 0) {
                 self.level = [NSNumber numberWithInt: self.level.integerValue + 1];
                 if (self.level.integerValue < 10) {
