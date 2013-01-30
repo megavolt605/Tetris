@@ -23,6 +23,9 @@ const int linesToLevelUp = 3;
     MVTetrisFigure * nextFigure;                                // следующая фигура
     NSTimer * timerRedraw;                                      // таймер перерисовки
     NSTimer * timerGame;                                        // таймер игры
+    NSTimer * timerLinesDissapear;
+    NSMutableArray * filledLinesIndexes;
+    float currentDisappearOpacity;
 }
 
 // инициализация
@@ -50,6 +53,8 @@ const int linesToLevelUp = 3;
                                                      userInfo: nil
                                                       repeats: true];
         
+        filledLinesIndexes = [NSMutableArray arrayWithCapacity: gameFieldHeight];
+        
         [self clearGame];
     }
     return self;
@@ -60,14 +65,14 @@ const int linesToLevelUp = 3;
     // поле
     memset(gameFieldData, 0, sizeof(gameFieldData));
 
-    for (int x = 1; x < gameFieldWidth - 1; x++ ) {
-        for (int y = 0; y < gameFieldHeight; y++ ) {
+    for (NSInteger x = 1; x < gameFieldWidth - 1; x++ ) {
+        for (NSInteger y = 0; y < gameFieldHeight; y++ ) {
             gameField[x][y] = self.fieldImage;
         }
     }
     
     // стенки стакана (вертикальные)
-    for (int y = 0; y < gameFieldHeight; y++ ) {
+    for (NSInteger y = 0; y < gameFieldHeight; y++ ) {
         gameField[0][y] = gameField[gameFieldWidth - 1][y] = self.wallImage;
         gameFieldData[0][y] = true;
 
@@ -86,16 +91,27 @@ const int linesToLevelUp = 3;
 - (void) drawGameField {
     float cellWidth = [self bounds].size.width / (gameFieldWidth + 5);
     float cellHeight = [self bounds].size.height / gameFieldHeight;
-    int x, y;
+    NSInteger x, y;
     
     for (y = 0; y < gameFieldHeight; y++) {
         for (x  = 0; x < gameFieldWidth; x++) {
+
+            float fraction = 1.0f; // прозрачность клетки
+            
+            // если мы на стадии "исчезновения" линий, то устанавливаем текущую прозрачность (кроме стенок)
+            if ([timerLinesDissapear isValid] & (x != 0) & (x != (gameFieldWidth-1))) {
+                if ([filledLinesIndexes indexOfObject: [NSNumber numberWithInteger: y]] != NSNotFound) {
+                    fraction = currentDisappearOpacity;
+                }
+            }
+            
+            // отрисовка теккущей ячейки
             [gameField[x][y] drawInRect: NSMakeRect(x * cellWidth, (gameFieldHeight - y - 1) * cellHeight, cellWidth, cellHeight)
                                fromRect: [self cellRect]
                               operation: NSCompositeCopy
-                               fraction: 1.0f];
+                               fraction: fraction];
         }
-    } 
+    }
 }
 
 // отрисовка вида
@@ -112,12 +128,12 @@ const int linesToLevelUp = 3;
 }
 
 // проверка пересечения текущей фигуры с уже занятыми ячейками игрового поля
-- (bool) checkIntersectFigure: (MVTetrisFigure *) figure atX: (int) x andY: (int) y {   
-    int cx, cy;
+- (bool) checkIntersectFigure: (MVTetrisFigure *) figure atX: (NSInteger) x andY: (NSInteger) y {   
+    NSInteger cx, cy;
     
-    for (int vx = 0; vx < 4; vx++) {
+    for (NSInteger vx = 0; vx < 4; vx++) {
         cx = x + vx;
-        for (int vy = 0; vy < 4; vy++) {
+        for (NSInteger vy = 0; vy < 4; vy++) {
             cy = y + vy;
             // охрана от выхода за пределы поля
             if ((cx >= 0) & (cx < gameFieldWidth) & (cy >= 0) & (cy < gameFieldHeight)) {
@@ -143,17 +159,17 @@ const int linesToLevelUp = 3;
 // событие: кнопка вверх
 - (IBAction) moveUp: (id) sender {
     
-    MVTetrisFigure * test;
+    MVTetrisFigure * testFigure;
     
     // проверка, что после переворота нашей фигуре есть место на игровом поле (нет пересечений с занятыми клетками)
     // для этого клонируем фигуру
-    test = [currentFigure clone];
+    testFigure = [currentFigure clone];
     
     // поворачиваем
-    [test rotate];
+    [testFigure rotate];
     
     // проверяем
-    if (! [self checkIntersectFigure:test atX:currentPos.x andY:currentPos.y]) {
+    if (! [self checkIntersectFigure: testFigure atX: currentPos.x andY: currentPos.y]) {
         // ок, можно повернуть основную фигуру
         [currentFigure rotate];
     }
@@ -163,9 +179,9 @@ const int linesToLevelUp = 3;
 - (IBAction) moveDown: (id) sender {
     // нам надо спрогнозировать падение текущей фигуры до первого "наложения"
     Boolean found = false;
-    int y = currentPos.y;
+    NSInteger y = currentPos.y;
     while (!found) {
-        if ([self checkIntersectFigure:currentFigure atX:currentPos.x andY:y + 1]) {
+        if ([self checkIntersectFigure: currentFigure atX: currentPos.x andY: y + 1]) {
             found = true;
             break;
         }
@@ -184,14 +200,14 @@ const int linesToLevelUp = 3;
 // событие: кнопка влево
 - (IBAction) moveLeft: (id) sender {
     // перемещение возможно только без пересечений с занятыми клетками
-    if (! [self checkIntersectFigure:currentFigure atX:currentPos.x-1 andY:currentPos.y]) 
+    if (! [self checkIntersectFigure: currentFigure atX: currentPos.x - 1 andY: currentPos.y])
         currentPos.x--;
 }
 
 // событие: кнопка вправо
 - (IBAction) moveRight: (id) sender {
     // перемещение возможно только без пересечений с занятыми клетками
-    if (! [self checkIntersectFigure:currentFigure atX:currentPos.x+1 andY:currentPos.y]) 
+    if (! [self checkIntersectFigure: currentFigure atX: currentPos.x+1 andY: currentPos.y]) 
         currentPos.x++;
 }
 
@@ -204,8 +220,8 @@ const int linesToLevelUp = 3;
 // проверить наличие на поле полностью занятых строк, 
 // осуществить сжатие игрового поля из-за полностью занятых линий, если таковые есть
 - (void) stopFall {
-    int cx, cy;
-    int vx, vy;
+    NSInteger cx, cy;
+    NSInteger vx, vy;
     
     // фиксация текущей фигуры
     for (vx = 0; vx < 4; vx++) {
@@ -221,6 +237,8 @@ const int linesToLevelUp = 3;
         }
     }
     
+    [filledLinesIndexes removeAllObjects];
+    
     // ищем заполненные линии
     for (vy = 0; vy < (gameFieldHeight-1); vy++) {
         
@@ -232,38 +250,69 @@ const int linesToLevelUp = 3;
                 break;
         }
         
-        // нашли полностью заполненную линию
+        // нашли полностью заполненную линию, запоминаем
         if (lineIsFull) {
+            [filledLinesIndexes addObject: [NSNumber numberWithInteger: vy]];
+
+            // обновляем статистику
             self.score = [NSNumber numberWithInt: self.score.integerValue + 5];
             self.lines = [NSNumber numberWithInt: self.lines.integerValue + 1];
-            
+
             // при необходимости увеличиваем уровень
             if ((self.lines.integerValue % linesToLevelUp) == 0) {
                 self.level = [NSNumber numberWithInt: self.level.integerValue + 1];
-                if (self.level.integerValue < 10) {
-                    [timerGame invalidate];
-                    timerGame = [NSTimer scheduledTimerWithTimeInterval: 1.0f - (self.level.floatValue / 10.0f)
-                                                                 target: self
-                                                               selector: @selector(tickGame:)
-                                                               userInfo: nil
-                                                                repeats: true];
-                }
             }
+        }
+    }
+    
+    // если есть заполненные линии
+    if (filledLinesIndexes.count) {
+        
+        // ставим игру на паузу
+        [timerGame invalidate];
+        
+        // запускаем таймер для отрисовки "исчезновения" заполненных линий
+        currentDisappearOpacity = 1.0f;
+        timerLinesDissapear = [NSTimer scheduledTimerWithTimeInterval: 0.03f
+                                                               target: self
+                                                             selector: @selector(tickLineDissapear:)
+                                                             userInfo: nil
+                                                              repeats: true];
+    }
+}
+
+- (void) tickLineDissapear: (id) sender {
+    if (currentDisappearOpacity >= 0.0f) {
+        currentDisappearOpacity = currentDisappearOpacity - 0.1f;
+        [self setNeedsDisplay: true];
+    } else {
+        [timerLinesDissapear invalidate];
+        
+        for (int i = 0; i < filledLinesIndexes.count; i++) {
+            NSInteger vy = [[filledLinesIndexes objectAtIndex: i] integerValue];
             
             // сжатие (стакан не сжимаем)
-            for (cy = vy - 1; cy >= 0; cy--) {
-                for (cx = 1; cx < (gameFieldWidth - 1); cx++) {
+            for (NSInteger cy = vy - 1; cy >= 0; cy--) {
+                for (NSInteger cx = 1; cx < (gameFieldWidth - 1); cx++) {
                     gameField[cx][cy + 1] = gameField[cx][cy];
                     gameFieldData[cx][cy + 1] = gameFieldData[cx][cy];
                 }
             }
             
             // обнуляем верхнюю строку (без границ справа и слева)
-            for (cx = 1; cx < (gameFieldWidth - 1); cx++) {
+            for (int cx = 1; cx < (gameFieldWidth - 1); cx++) {
                 gameField[cx][0] = _fieldImage;
                 gameFieldData[cx][0] = false;
             }
         }
+            
+        float gameTick = (self.level.integerValue < 10) ? 1.0f - (self.level.floatValue / 10.0f) : 0.1f;
+        
+        timerGame = [NSTimer scheduledTimerWithTimeInterval: gameTick
+                                                     target: self
+                                                   selector: @selector(tickGame:)
+                                                   userInfo: nil
+                                                    repeats: true];
     }
 }
 
