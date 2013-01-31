@@ -36,7 +36,7 @@ typedef struct {
 // цвета фигур
 NSImage * figureImages [fkCount];
 
-@class MVTetris;
+@class MVTetrisView;
 
 @interface MVTetrisFigure : NSObject
 
@@ -50,8 +50,8 @@ NSImage * figureImages [fkCount];
 - (MVTetrisFigure *) clone;
 
 // прорисовка фигуры по координатам (координаты по вертикали переворачиваются)
-- (void) drawFigureOnField: (MVTetris *) aField atX: (double) aX andY: (double) aY doDrawEmpty: (Boolean) aDoDrawEmpty;
-- (void) drawFigureOnField: (MVTetris *) aField atX: (int) aX andY: (int) aY;
+- (void) drawFigureOnField: (MVTetrisView *) aField atX: (double) aX andY: (double) aY doDrawEmpty: (Boolean) aDoDrawEmpty;
+- (void) drawFigureOnField: (MVTetrisView *) aField atX: (int) aX andY: (int) aY;
 
 
 // объявление свойств

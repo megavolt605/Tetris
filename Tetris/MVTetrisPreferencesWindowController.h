@@ -7,12 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MVTetris.h"
+#import "MVTetrisView.h"
 
 extern NSString * const MVTetrisPreferences_HighScores;
 
 @interface MVTetrisPreferencesWindowController : NSWindowController {
-    IBOutlet MVTetris * tetris;
+    IBOutlet MVTetrisView * tetris;
 }
 
 @property NSMutableArray * highScores;

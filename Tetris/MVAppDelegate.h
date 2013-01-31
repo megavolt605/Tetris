@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MVTetris.h"
+#import "MVTetrisView.h"
 
 @class MVTetrisPreferencesWindowController;
 
@@ -18,6 +18,6 @@
 - (IBAction) showPreferences: (id) sender;
 
 @property (assign) IBOutlet NSWindow * window;
-@property (assign) IBOutlet MVTetris * field;
+@property (assign) IBOutlet MVTetrisView * field;
 
 @end

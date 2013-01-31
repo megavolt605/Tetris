@@ -24,7 +24,7 @@
 - (MVTetrisHighScore *) init {
     if (self = [super init]) {
         self.date = [NSDate date];
-        self.score = [NSNumber numberWithInt: 0];
+        self.score = @0;
     }
     return self;
 }

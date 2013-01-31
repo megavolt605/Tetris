@@ -15,7 +15,7 @@
 extern const int gameFieldWidth;
 extern const int gameFieldHeight;
 
-@interface MVTetris : NSView {
+@interface MVTetrisView : NSView {
     // связка с полем с заголовком игровых очков
     IBOutlet NSTextField * labelTitleScore;
     

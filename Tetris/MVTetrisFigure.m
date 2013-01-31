@@ -7,7 +7,7 @@
 //
 
 #import "MVTetrisFigure.h"
-#import "MVTetris.h"
+#import "MVTetrisView.h"
 
 // координаты с занятыми ячейками для всех типов фигур
 const coord figureShapes[fkCount][4] = { 
@@ -18,7 +18,7 @@ const coord figureShapes[fkCount][4] = {
     /* fkJ       */ { {2,0}, {2,1}, {2,2}, {1,2} },
     /* fkS       */ { {1,1}, {2,1}, {0,2}, {1,2} },
     /* fkZ       */ { {0,1}, {1,1}, {1,2}, {2,2} },
-    /* fkT       */ { {1,2}, {2,2}, {3,2}, {2,1} }
+    /* fkT       */ { {0,2}, {1,2}, {2,2}, {1,1} }
 };
 
 @implementation MVTetrisFigure
@@ -108,7 +108,7 @@ const coord figureShapes[fkCount][4] = {
 
 
 // прорисовка фигуры по координатам (координаты по вертикали переворачиваются)
-- (void) drawFigureOnField: (MVTetris *) aField atX: (double) aX andY: (double) aY doDrawEmpty: (Boolean) aDoDrawEmpty {
+- (void) drawFigureOnField: (MVTetrisView *) aField atX: (double) aX andY: (double) aY doDrawEmpty: (Boolean) aDoDrawEmpty {
     NSRect rect;
     float cellWidth = [aField bounds].size.width / (gameFieldWidth + 5);
     float cellHeight = [aField bounds].size.height / gameFieldHeight;
@@ -133,7 +133,7 @@ const coord figureShapes[fkCount][4] = {
     }
 }
 
-- (void) drawFigureOnField: (MVTetris *) aField atX: (int) aX andY: (int) aY {
+- (void) drawFigureOnField: (MVTetrisView *) aField atX: (int) aX andY: (int) aY {
     [self drawFigureOnField: aField atX: aX andY: aY doDrawEmpty: false];
 }
 

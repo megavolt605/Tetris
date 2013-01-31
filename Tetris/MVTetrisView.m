@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 megavolt605@gmail.com. All rights reserved.
 //
 
-#import "MVTetris.h"
+#import "MVTetrisView.h"
 #import "MVTetrisPreferencesWindowController.h"
 #import "MVTetrisHighScore.h"
 
@@ -15,7 +15,7 @@ const int gameFieldWidth  = 16;
 const int gameFieldHeight = 28;
 const int linesToLevelUp = 3;
 
-@implementation MVTetris {
+@implementation MVTetrisView {
     NSImage * gameField [gameFieldWidth] [gameFieldHeight];     // цвета на поле
     Boolean gameFieldData [gameFieldWidth] [gameFieldHeight];   // занятость клеток
     NSPoint currentPos;                                         // координаты текущей фигуры
@@ -32,7 +32,7 @@ const int linesToLevelUp = 3;
 - (id) initWithFrame: (NSRect) frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.inGame = [NSNumber numberWithBool: false];
+        self.inGame = @NO;
         
         // создаем картинки
         figureImages[fkJ] = [NSImage imageNamed: @"Tetris_Blue.png"];
@@ -253,20 +253,24 @@ const int linesToLevelUp = 3;
         // нашли полностью заполненную линию, запоминаем
         if (lineIsFull) {
             [filledLinesIndexes addObject: [NSNumber numberWithInteger: vy]];
-
-            // обновляем статистику
-            self.score = [NSNumber numberWithInt: self.score.integerValue + 5];
-            self.lines = [NSNumber numberWithInt: self.lines.integerValue + 1];
-
-            // при необходимости увеличиваем уровень
-            if ((self.lines.integerValue % linesToLevelUp) == 0) {
-                self.level = [NSNumber numberWithInt: self.level.integerValue + 1];
-            }
         }
     }
     
     // если есть заполненные линии
     if (filledLinesIndexes.count) {
+        
+        // обновляем статистику
+        self.score = [NSNumber numberWithInt: self.score.integerValue + 5 * filledLinesIndexes.count];
+        
+        for (vx = self.lines.integerValue + 1; vx <= self.lines.integerValue + filledLinesIndexes.count; vx++) {
+            
+            // при необходимости увеличиваем уровень
+            if ((vx % linesToLevelUp) == 0) {
+                self.level = [NSNumber numberWithInt: self.level.integerValue + 1];
+            }
+        }
+        
+        self.lines = [NSNumber numberWithInt: self.lines.integerValue + filledLinesIndexes.count];
         
         // ставим игру на паузу
         [timerGame invalidate];
@@ -353,17 +357,17 @@ const int linesToLevelUp = 3;
     [self clearGameField];
     nextFigure = [[MVTetrisFigure alloc] init];
     [nextFigure randomKind];
-    self.level = [NSNumber numberWithInt: 1];
-    self.score = [NSNumber numberWithInt: 0];
-    self.figures = [NSNumber numberWithInt: 0];
-    self.lines = [NSNumber numberWithInt: 0];
+    self.level = @1;
+    self.score = @0;
+    self.figures = @0;
+    self.lines = @0;
     [labelTitleScore setStringValue: @"Очки:"];
 
 }
 
 // остановка игры
 - (IBAction) stopGame:(id)sender {
-    self.inGame = [NSNumber numberWithBool: false];
+    self.inGame = @NO;
     NSMutableArray * scores = highScoresPreferencesController.highScores;
     [scores insertObject: [MVTetrisHighScore highScore: self.score] atIndex: 0];
     highScoresPreferencesController.highScores = scores;
@@ -376,7 +380,7 @@ const int linesToLevelUp = 3;
     [self clearGame];
     [self newFigure];
     [labelTitleScore setStringValue: @"Очки:"];
-    self.inGame = [NSNumber numberWithBool: true];
+    self.inGame = @YES;
     timerGame = [NSTimer scheduledTimerWithTimeInterval: 1.0f
                                                  target: self
                                                selector: @selector(tickGame:)
