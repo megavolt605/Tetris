@@ -20,6 +20,7 @@
 		B386E1F81592215B0054C40C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B386E1F61592215B0054C40C /* InfoPlist.strings */; };
 		B386E1FB1592215B0054C40C /* TetrisTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B386E1FA1592215B0054C40C /* TetrisTests.m */; };
 		B386E2061592218E0054C40C /* MVTetrisView.m in Sources */ = {isa = PBXBuildFile; fileRef = B386E2051592218E0054C40C /* MVTetrisView.m */; };
+		B3AAE13016BAFF2A00D8E774 /* NSImage+Tetris.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AAE12F16BAFF2A00D8E774 /* NSImage+Tetris.m */; };
 		B3AD0FF316A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AD0FF216A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m */; };
 		B3AD0FF816A17C6A007F3D57 /* MVTetrisPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3AD0FF716A17C6A007F3D57 /* MVTetrisPreferences.xib */; };
 		B3AEA6A116A5C0600057F5B0 /* Tetris_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AEA69A16A5C0600057F5B0 /* Tetris_Red.png */; };
@@ -68,6 +69,8 @@
 		B386E1FA1592215B0054C40C /* TetrisTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TetrisTests.m; sourceTree = "<group>"; };
 		B386E2041592218E0054C40C /* MVTetrisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVTetrisView.h; sourceTree = "<group>"; };
 		B386E2051592218E0054C40C /* MVTetrisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVTetrisView.m; sourceTree = "<group>"; };
+		B3AAE12E16BAFF2A00D8E774 /* NSImage+Tetris.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Tetris.h"; sourceTree = "<group>"; };
+		B3AAE12F16BAFF2A00D8E774 /* NSImage+Tetris.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Tetris.m"; sourceTree = "<group>"; };
 		B3AD0FF116A17B8E007F3D57 /* MVTetrisPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVTetrisPreferencesWindowController.h; sourceTree = "<group>"; };
 		B3AD0FF216A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVTetrisPreferencesWindowController.m; sourceTree = "<group>"; };
 		B3AD0FF716A17C6A007F3D57 /* MVTetrisPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MVTetrisPreferences.xib; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 		B3AAE12416BAD05E00D8E774 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				B3AAE12E16BAFF2A00D8E774 /* NSImage+Tetris.h */,
+				B3AAE12F16BAFF2A00D8E774 /* NSImage+Tetris.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				B30844F71594C51A00C71533 /* MVTetrisFigure.m in Sources */,
 				B3B4B118169F422A0001EAEE /* MVTetrisHighScore.m in Sources */,
 				B3AD0FF316A17B8E007F3D57 /* MVTetrisPreferencesWindowController.m in Sources */,
+				B3AAE13016BAFF2A00D8E774 /* NSImage+Tetris.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

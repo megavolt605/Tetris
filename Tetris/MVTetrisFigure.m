@@ -8,6 +8,7 @@
 
 #import "MVTetrisFigure.h"
 #import "MVTetrisView.h"
+#import "NSImage+Tetris.h"
 
 // координаты с занятыми ячейками для всех типов фигур
 const coord figureShapes[fkCount][4] = { 
@@ -119,14 +120,14 @@ const coord figureShapes[fkCount][4] = {
             if ([self shape].figure[x][y]) {
                 
                 // ячейка занята
-                [self.color drawInRect: rect fromRect: aField.cellRect operation: NSCompositeCopy fraction: 1.0f];
+                [self.color drawInRect: rect fromRect: [self.color cellRect] operation: NSCompositeCopy fraction: 1.0f];
                 
             } else {
                 // или свободна
                 
                 // когда фигура рисуется на поле, пустые ячейки не нужно рисовать (затираются ячейки поля)
                 if (aDoDrawEmpty) {
-                    [aField.fieldImage drawInRect:rect fromRect: aField.cellRect operation: NSCompositeCopy fraction: 1.0f];
+                    [aField.fieldImage drawInRect:rect fromRect: aField.fieldImage.cellRect operation: NSCompositeCopy fraction: 1.0f];
                 }
             }
         }

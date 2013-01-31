@@ -38,8 +38,6 @@ extern const int gameFieldHeight;
 // показ/скрытие таблицы рекордов
 - (IBAction) highScores: (id) sender;
 
-- (NSRect) cellRect;
-
 @property (readonly) NSImage * fieldImage;
 @property (readonly) NSImage * wallImage;
 

@@ -10,8 +10,9 @@
 
 @implementation NSImage (Tetris)
 
-- (NSRect) rect {
+- (NSRect) cellRect {
     return NSMakeRect(0, 0, self.size.width + 1, self.size.height + 1);
 }
+
 
 @end

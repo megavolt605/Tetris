@@ -9,6 +9,7 @@
 #import "MVTetrisView.h"
 #import "MVTetrisPreferencesWindowController.h"
 #import "MVTetrisHighScore.h"
+#import "NSImage+Tetris.h"
 
 // размеры игрового поля
 const int gameFieldWidth  = 16;
@@ -106,8 +107,9 @@ const int linesToLevelUp = 3;
             }
             
             // отрисовка теккущей ячейки
-            [gameField[x][y] drawInRect: NSMakeRect(x * cellWidth, (gameFieldHeight - y - 1) * cellHeight, cellWidth, cellHeight)
-                               fromRect: [self cellRect]
+            NSImage * cell = gameField[x][y];
+            [cell drawInRect: NSMakeRect(x * cellWidth, (gameFieldHeight - y - 1) * cellHeight, cellWidth, cellHeight)
+                               fromRect: [cell cellRect]
                               operation: NSCompositeCopy
                                fraction: fraction];
         }
@@ -391,10 +393,6 @@ const int linesToLevelUp = 3;
 // отображение / скрытие окна с результатами игр
 - (IBAction) highScores:(id)sender {
     [highScoresDrawer toggle: self];
-}
-
-- (NSRect) cellRect {
-    return NSMakeRect(0, 0, self.fieldImage.size.width + 1, self.fieldImage.size.height + 1);
 }
 
 @end

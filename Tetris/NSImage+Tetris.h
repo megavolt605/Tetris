@@ -10,6 +10,6 @@
 
 @interface NSImage (Tetris)
 
-- (NSRect) rect;
+- (NSRect) cellRect;
 
 @end
