@@ -299,7 +299,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSTextField" id="464226572">
@@ -307,6 +307,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{389, 481}, {133, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1030137782"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -348,6 +349,7 @@
 							<array class="NSMutableArray" key="NSSubviews"/>
 							<string key="NSFrame">{{20, 20}, {364, 544}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="78413349"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSClassName">MVTetrisView</string>
@@ -357,6 +359,8 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{386, 13}, {139, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="530666107">
@@ -384,6 +388,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{386, 46}, {139, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="635676850"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -408,6 +413,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{386, 79}, {139, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="105759869"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -432,6 +438,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{392, 444}, {127, 29}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1025035990"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -513,6 +520,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{389, 417}, {133, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="94624478"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -533,6 +541,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{392, 380}, {127, 29}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="601722743"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -593,6 +602,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{389, 353}, {133, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="796613733"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -613,6 +623,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{392, 316}, {127, 29}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1034691942"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -673,6 +684,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{389, 545}, {133, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="89748023"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -693,6 +705,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{392, 508}, {127, 29}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="464226572"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -750,6 +763,8 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{539, 584}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="848620972"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
@@ -763,7 +778,7 @@
 				<string key="NSClassName">NSFontManager</string>
 			</object>
 			<object class="NSCustomView" id="292916757">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="677805325">
@@ -771,6 +786,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 547}, {246, 17}}</string>
 						<reference key="NSSuperview" ref="292916757"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="922951130"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -791,6 +807,8 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{90, 13}, {176, 32}}</string>
 						<reference key="NSSuperview" ref="292916757"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="174570343">
@@ -823,7 +841,8 @@
 										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrameSize">{238, 456}</string>
 										<reference key="NSSuperview" ref="443818458"/>
-										<reference key="NSNextKeyView" ref="407936628"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="130307321"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -834,6 +853,7 @@
 											<array class="NSMutableArray" key="NSSubviews"/>
 											<string key="NSFrameSize">{238, 17}</string>
 											<reference key="NSSuperview" ref="407936628"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="283142083"/>
 											<reference key="NSTableView" ref="858040604"/>
 										</object>
@@ -842,6 +862,7 @@
 											<int key="NSvFlags">-2147483392</int>
 											<string key="NSFrame">{{224, 0}, {16, 17}}</string>
 											<reference key="NSSuperview" ref="922951130"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="443818458"/>
 											<string key="NSReuseIdentifierKey">_NS:19</string>
 										</object>
@@ -945,6 +966,7 @@
 								</array>
 								<string key="NSFrame">{{1, 17}, {238, 456}}</string>
 								<reference key="NSSuperview" ref="922951130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="858040604"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<reference key="NSDocView" ref="858040604"/>
@@ -956,6 +978,7 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 								<reference key="NSSuperview" ref="922951130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1039090704"/>
 								<string key="NSReuseIdentifierKey">_NS:58</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -968,6 +991,7 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{1, 528}, {158, 15}}</string>
 								<reference key="NSSuperview" ref="922951130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1038835838"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -984,6 +1008,7 @@
 								</array>
 								<string key="NSFrame">{{1, 0}, {238, 17}}</string>
 								<reference key="NSSuperview" ref="922951130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="828527042"/>
 								<reference key="NSDocView" ref="828527042"/>
 								<reference key="NSBGColor" ref="873433877"/>
@@ -993,13 +1018,15 @@
 						</array>
 						<string key="NSFrame">{{20, 61}, {240, 474}}</string>
 						<reference key="NSSuperview" ref="292916757"/>
-						<reference key="NSNextKeyView" ref="443818458"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="407936628"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133682</int>
 						<reference key="NSVScroller" ref="130307321"/>
 						<reference key="NSHScroller" ref="1039090704"/>
 						<reference key="NSContentView" ref="443818458"/>
 						<reference key="NSHeaderClipView" ref="407936628"/>
+						<reference key="NSCornerView" ref="283142083"/>
 						<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 						<double key="NSMinMagnification">0.25</double>
 						<double key="NSMaxMagnification">4</double>
@@ -1007,6 +1034,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{280, 584}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="677805325"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -1042,6 +1071,9 @@
 			</object>
 			<object class="NSCustomObject" id="404071677">
 				<string key="NSClassName">MVTetrisPreferencesWindowController</string>
+			</object>
+			<object class="NSCustomObject" id="928707243">
+				<string key="NSClassName">MVTetris</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1215,28 +1247,20 @@
 					<int key="connectionID">860</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tetris</string>
+						<reference key="source" ref="848620972"/>
+						<reference key="destination" ref="928707243"/>
+					</object>
+					<int key="connectionID">950</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">performClick:</string>
 						<reference key="source" ref="635676850"/>
 						<reference key="destination" ref="184720629"/>
 					</object>
 					<int key="connectionID">896</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: field.inGame</string>
-						<reference key="source" ref="105759869"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="105759869"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: field.inGame</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">field.inGame</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">653</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1248,23 +1272,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: field.inGame</string>
-						<reference key="source" ref="1034691942"/>
-						<reference key="destination" ref="976324537"/>
+						<string key="label">enabled: inGame</string>
+						<reference key="source" ref="105759869"/>
+						<reference key="destination" ref="928707243"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1034691942"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">enabled: field.inGame</string>
+							<reference key="NSSource" ref="105759869"/>
+							<reference key="NSDestination" ref="928707243"/>
+							<string key="NSLabel">enabled: inGame</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">field.inGame</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
+							<string key="NSKeyPath">inGame</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">647</int>
+					<int key="connectionID">954</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1276,35 +1296,55 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: field.score</string>
-						<reference key="source" ref="1030137782"/>
-						<reference key="destination" ref="976324537"/>
+						<string key="label">enabled: inGame</string>
+						<reference key="source" ref="1034691942"/>
+						<reference key="destination" ref="928707243"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1030137782"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">value: field.score</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">field.score</string>
+							<reference key="NSSource" ref="1034691942"/>
+							<reference key="NSDestination" ref="928707243"/>
+							<string key="NSLabel">enabled: inGame</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">inGame</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">668</int>
+					<int key="connectionID">952</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: field.figures</string>
-						<reference key="source" ref="94624478"/>
-						<reference key="destination" ref="976324537"/>
+						<string key="label">value: score</string>
+						<reference key="source" ref="1030137782"/>
+						<reference key="destination" ref="928707243"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="94624478"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">value: field.figures</string>
+							<reference key="NSSource" ref="1030137782"/>
+							<reference key="NSDestination" ref="928707243"/>
+							<string key="NSLabel">value: score</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">field.figures</string>
+							<string key="NSKeyPath">score</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">687</int>
+					<int key="connectionID">945</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: figures</string>
+						<reference key="source" ref="94624478"/>
+						<reference key="destination" ref="928707243"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="94624478"/>
+							<reference key="NSDestination" ref="928707243"/>
+							<string key="NSLabel">value: figures</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">figures</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">947</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1396,19 +1436,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: field.lines</string>
+						<string key="label">value: lines</string>
 						<reference key="source" ref="796613733"/>
-						<reference key="destination" ref="976324537"/>
+						<reference key="destination" ref="928707243"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="796613733"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">value: field.lines</string>
+							<reference key="NSDestination" ref="928707243"/>
+							<string key="NSLabel">value: lines</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">field.lines</string>
+							<string key="NSKeyPath">lines</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">840</int>
+					<int key="connectionID">949</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1436,19 +1476,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: field.level</string>
+						<string key="label">value: level</string>
 						<reference key="source" ref="89748023"/>
-						<reference key="destination" ref="976324537"/>
+						<reference key="destination" ref="928707243"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="89748023"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">value: field.level</string>
+							<reference key="NSDestination" ref="928707243"/>
+							<string key="NSLabel">value: level</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">field.level</string>
+							<string key="NSKeyPath">level</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">891</int>
+					<int key="connectionID">943</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2961,6 +3001,11 @@
 						<reference key="object" ref="652556445"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">940</int>
+						<reference key="object" ref="928707243"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -3167,12 +3212,13 @@
 				<string key="936.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="938.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="939.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="940.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">939</int>
+			<int key="maxID">954</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3191,14 +3237,14 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="field">MVTetris</string>
+						<string key="field">MVTetrisView</string>
 						<string key="preferences">MVTetrisPreferencesWindowController</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="field">
 							<string key="name">field</string>
-							<string key="candidateClassName">MVTetris</string>
+							<string key="candidateClassName">MVTetrisView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="preferences">
 							<string key="name">preferences</string>
@@ -3216,6 +3262,44 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">MVTetris</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MVTetris.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MVTetrisPreferencesWindowController</string>
+					<string key="superclassName">NSWindowController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clearHighScores:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clearHighScores:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clearHighScores:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">tetris</string>
+						<string key="NS.object.0">MVTetrisView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">tetris</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">tetris</string>
+							<string key="candidateClassName">MVTetrisView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MVTetrisPreferencesWindowController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MVTetrisView</string>
 					<string key="superclassName">NSView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="highScores:">id</string>
@@ -3242,6 +3326,7 @@
 						<string key="labelTitleScore">NSTextField</string>
 						<string key="newGameButton">NSButton</string>
 						<string key="stopGameButton">NSButton</string>
+						<string key="tetris">MVTetris</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="highScoresDrawer">
@@ -3264,40 +3349,14 @@
 							<string key="name">stopGameButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MVTetris.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MVTetrisPreferencesWindowController</string>
-					<string key="superclassName">NSWindowController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clearHighScores:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clearHighScores:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clearHighScores:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">tetris</string>
-						<string key="NS.object.0">MVTetris</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">tetris</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+						<object class="IBToOneOutletInfo" key="tetris">
 							<string key="name">tetris</string>
 							<string key="candidateClassName">MVTetris</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MVTetrisPreferencesWindowController.h</string>
+						<string key="minorKey">./Classes/MVTetrisView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

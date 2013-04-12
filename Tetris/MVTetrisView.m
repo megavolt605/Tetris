@@ -20,8 +20,6 @@ const int linesToLevelUp = 3;
     NSImage * gameField [gameFieldWidth] [gameFieldHeight];     // цвета на поле
     Boolean gameFieldData [gameFieldWidth] [gameFieldHeight];   // занятость клеток
     NSPoint currentPos;                                         // координаты текущей фигуры
-    MVTetrisFigure * currentFigure;                             // текущая фигура
-    MVTetrisFigure * nextFigure;                                // следующая фигура
     NSTimer * timerRedraw;                                      // таймер перерисовки
     NSTimer * timerGame;                                        // таймер игры
     NSTimer * timerLinesDissapear;
@@ -33,7 +31,7 @@ const int linesToLevelUp = 3;
 - (id) initWithFrame: (NSRect) frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.inGame = @NO;
+        tetris.inGame = @NO;
         
         // создаем картинки
         figureImages[fkJ] = [NSImage imageNamed: @"Tetris_Blue.png"];
@@ -121,11 +119,11 @@ const int linesToLevelUp = 3;
     [self drawGameField];
     
     // рисуем следующую фигуру
-    [nextFigure drawFigureOnField: self atX: gameFieldWidth + 1 andY: 0 doDrawEmpty: true];
+    [tetris.nextFigure drawFigureOnField: self atX: gameFieldWidth + 1 andY: 0 doDrawEmpty: true];
     
     // если в игре, рисуем текущую фигуру
-    if ([_inGame boolValue]) {
-        [currentFigure drawFigureOnField: self atX: currentPos.x andY: currentPos.y];
+    if ([tetris.inGame boolValue]) {
+        [tetris.currentFigure drawFigureOnField: self atX: currentPos.x andY: currentPos.y];
     }
 }
 
@@ -165,7 +163,7 @@ const int linesToLevelUp = 3;
     
     // проверка, что после переворота нашей фигуре есть место на игровом поле (нет пересечений с занятыми клетками)
     // для этого клонируем фигуру
-    testFigure = [currentFigure clone];
+    testFigure = [tetris.currentFigure clone];
     
     // поворачиваем
     [testFigure rotate];
@@ -173,7 +171,7 @@ const int linesToLevelUp = 3;
     // проверяем
     if (! [self checkIntersectFigure: testFigure atX: currentPos.x andY: currentPos.y]) {
         // ок, можно повернуть основную фигуру
-        [currentFigure rotate];
+        [tetris.currentFigure rotate];
     }
 }
 
@@ -183,7 +181,7 @@ const int linesToLevelUp = 3;
     Boolean found = false;
     NSInteger y = currentPos.y;
     while (!found) {
-        if ([self checkIntersectFigure: currentFigure atX: currentPos.x andY: y + 1]) {
+        if ([self checkIntersectFigure: tetris.currentFigure atX: currentPos.x andY: y + 1]) {
             found = true;
             break;
         }
@@ -202,14 +200,14 @@ const int linesToLevelUp = 3;
 // событие: кнопка влево
 - (IBAction) moveLeft: (id) sender {
     // перемещение возможно только без пересечений с занятыми клетками
-    if (! [self checkIntersectFigure: currentFigure atX: currentPos.x - 1 andY: currentPos.y])
+    if (! [self checkIntersectFigure: tetris.currentFigure atX: currentPos.x - 1 andY: currentPos.y])
         currentPos.x--;
 }
 
 // событие: кнопка вправо
 - (IBAction) moveRight: (id) sender {
     // перемещение возможно только без пересечений с занятыми клетками
-    if (! [self checkIntersectFigure: currentFigure atX: currentPos.x+1 andY: currentPos.y]) 
+    if (! [self checkIntersectFigure: tetris.currentFigure atX: currentPos.x+1 andY: currentPos.y])
         currentPos.x++;
 }
 
@@ -231,8 +229,8 @@ const int linesToLevelUp = 3;
         if ( (cx >= 0) & (cx < gameFieldWidth)) {
             for (vy = 0; vy < 4; vy++) {
                 cy = currentPos.y + vy;
-                if ( (cy >= 0) & (cy < gameFieldHeight) & (currentFigure.shape.figure[vx][vy]) ) {
-                    gameField[cx][cy] = [currentFigure color];
+                if ( (cy >= 0) & (cy < gameFieldHeight) & (tetris.currentFigure.shape.figure[vx][vy]) ) {
+                    gameField[cx][cy] = [tetris.currentFigure color];
                     gameFieldData[cx][cy] = true;
                 }
             }
@@ -262,17 +260,17 @@ const int linesToLevelUp = 3;
     if (filledLinesIndexes.count) {
         
         // обновляем статистику
-        self.score = [NSNumber numberWithInt: self.score.integerValue + 5 * filledLinesIndexes.count];
+        tetris.score = [NSNumber numberWithInt: tetris.score.integerValue + 5 * filledLinesIndexes.count];
         
-        for (vx = self.lines.integerValue + 1; vx <= self.lines.integerValue + filledLinesIndexes.count; vx++) {
+        for (vx = tetris.lines.integerValue + 1; vx <= tetris.lines.integerValue + filledLinesIndexes.count; vx++) {
             
             // при необходимости увеличиваем уровень
             if ((vx % linesToLevelUp) == 0) {
-                self.level = [NSNumber numberWithInt: self.level.integerValue + 1];
+                tetris.level = [NSNumber numberWithInt: tetris.level.integerValue + 1];
             }
         }
         
-        self.lines = [NSNumber numberWithInt: self.lines.integerValue + filledLinesIndexes.count];
+        tetris.lines = [NSNumber numberWithInt: tetris.lines.integerValue + filledLinesIndexes.count];
         
         // ставим игру на паузу
         [timerGame invalidate];
@@ -312,7 +310,7 @@ const int linesToLevelUp = 3;
             }
         }
             
-        float gameTick = (self.level.integerValue < 10) ? 1.0f - (self.level.floatValue / 10.0f) : 0.1f;
+        float gameTick = (tetris.level.integerValue < 10) ? 1.0f - (tetris.level.floatValue / 10.0f) : 0.1f;
         
         timerGame = [NSTimer scheduledTimerWithTimeInterval: gameTick
                                                      target: self
@@ -324,29 +322,29 @@ const int linesToLevelUp = 3;
 
 // сделать текущую фигуру из следующей, случайно выбрать форму и цвет следующей
 - (void) newFigure {
-    currentFigure = nextFigure;
-    nextFigure = [[MVTetrisFigure alloc] init];
-    [nextFigure randomKind];
+    tetris.currentFigure = tetris.nextFigure;
+    tetris.nextFigure = [[MVTetrisFigure alloc] init];
+    [tetris.nextFigure randomKind];
     currentPos = NSMakePoint((gameFieldWidth - 4) / 2, 0);
 }
 
 // событие: таймер игры
 - (void) tickGame:(id)sender; {
-    if ([_inGame boolValue]) {
+    if ([tetris.inGame boolValue]) {
         
         // если фигура, переместясь вниз на клетку будет пересекаться с занятыми ячейками на поле, 
         // то нужно ее зафиксировать, сделать текущей фигуру на базе следующей, сгенерировать следующую фигуру
-        if ([self checkIntersectFigure:currentFigure atX:currentPos.x andY:currentPos.y + 1]) {
+        if ([self checkIntersectFigure: tetris.currentFigure atX:currentPos.x andY:currentPos.y + 1]) {
             [self stopFall];
             [self newFigure];
             
             // проверка конца игры: новая фигура на начальном месте пересекается с имеющемися ячейками
-            if ([self checkIntersectFigure:currentFigure atX:currentPos.x andY:currentPos.y]) {
+            if ([self checkIntersectFigure: tetris.currentFigure atX:currentPos.x andY:currentPos.y]) {
                 [self stopGame:nil];
             } else {
                 // все ок, прибавляем очки и обновляем их в окне
-                self.score = [NSNumber numberWithInt: self.score.integerValue + 1];
-                self.figures = [NSNumber numberWithInt: self.figures.integerValue + 1];
+                tetris.score = [NSNumber numberWithInt: tetris.score.integerValue + 1];
+                tetris.figures = [NSNumber numberWithInt: tetris.figures.integerValue + 1];
             }
         } else 
             // просто перемещаем вниз
@@ -357,21 +355,21 @@ const int linesToLevelUp = 3;
 // очистка состояния игры
 - (void) clearGame {
     [self clearGameField];
-    nextFigure = [[MVTetrisFigure alloc] init];
-    [nextFigure randomKind];
-    self.level = @1;
-    self.score = @0;
-    self.figures = @0;
-    self.lines = @0;
+    tetris.nextFigure = [[MVTetrisFigure alloc] init];
+    [tetris.nextFigure randomKind];
+    tetris.level = @1;
+    tetris.score = @0;
+    tetris.figures = @0;
+    tetris.lines = @0;
     [labelTitleScore setStringValue: @"Очки:"];
 
 }
 
 // остановка игры
 - (IBAction) stopGame:(id)sender {
-    self.inGame = @NO;
+    tetris.inGame = @NO;
     NSMutableArray * scores = highScoresPreferencesController.highScores;
-    [scores insertObject: [MVTetrisHighScore highScore: self.score] atIndex: 0];
+    [scores insertObject: [MVTetrisHighScore highScore: tetris.score] atIndex: 0];
     highScoresPreferencesController.highScores = scores;
     [timerGame invalidate];
     timerGame = nil;
@@ -382,7 +380,7 @@ const int linesToLevelUp = 3;
     [self clearGame];
     [self newFigure];
     [labelTitleScore setStringValue: @"Очки:"];
-    self.inGame = @YES;
+    tetris.inGame = @YES;
     timerGame = [NSTimer scheduledTimerWithTimeInterval: 1.0f
                                                  target: self
                                                selector: @selector(tickGame:)

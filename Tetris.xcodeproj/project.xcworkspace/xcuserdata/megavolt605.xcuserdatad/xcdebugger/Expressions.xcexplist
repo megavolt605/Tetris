@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[MVTetris initWithFrame:]:MVTetris.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MVTetris drawGameField]:MVTetris.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameField[x][y]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
